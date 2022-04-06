@@ -1,0 +1,6 @@
+{
+  "short_name": "Travelogue",
+  "name": "Plan your trips with travelogue",
+  "start_url": ".",
+  "display": "standalone"
+}
