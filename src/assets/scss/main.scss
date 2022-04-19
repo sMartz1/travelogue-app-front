@@ -1,3 +1,10 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    transition-duration: 0.1s;
+    box-sizing: border-box;
+}
+
 .main-container{
     background-color: $backgroundColor;
 }
