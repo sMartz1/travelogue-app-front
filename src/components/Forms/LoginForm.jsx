@@ -1,9 +1,7 @@
 import React from "react";
-import { Controller, useForm } from "react-hook-form";
-import {
-  Button,
-  TextField
-} from "@mui/material";
+import { useForm } from "react-hook-form";
+import TextFieldCustom from "./SubComponents/TextFieldCustom";
+import { Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -37,47 +35,28 @@ export default function LoginForm() {
     control: controlLogin,
     handleSubmit,
     formState: { errors: errorsLogin },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
   const onSubmit = (data) => {
-      console.log("Datos recolectados",data)
+    console.log("Datos recolectados", data);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
+      <TextFieldCustom
         name="username"
         control={controlLogin}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            id="login-input"
-            label={textContent.loginForm.username}
-            variant="standard"
-            error={!!errorsLogin.username}
-            helperText={errorsLogin.username ? errorsLogin.username?.message : ""}
-          />
-        )}
+        label={textContent.loginForm.username}
+        id="login-input"
+        errors={errorsLogin.username}
       />
-      <Controller
+      <TextFieldCustom
         name="password"
         control={controlLogin}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            id="password-input"
-            label="Contraseña"
-            variant="standard"
-            type="password"
-            error={!!errorsLogin.password}
-            helperText={
-              errorsLogin.password ? errorsLogin.password?.message : ""
-            }
-          />
-        )}
+        label={textContent.loginForm.password}
+        id="password-input"
+        errors={errorsLogin.password}
+        type="password"
       />
       <Button variant="contained" type="submit">
         {textContent.loginForm.buttonLogin}

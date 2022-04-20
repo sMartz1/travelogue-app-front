@@ -7,4 +7,6 @@
 
 .main-container{
     background-color: $backgroundColor;
+    // Pendiente ajustar alto minimo una vez se defina altura de footer y header
+    min-height: 70vh;
 }
