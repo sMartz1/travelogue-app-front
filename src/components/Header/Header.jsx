@@ -7,10 +7,10 @@ const Header = () => {
             <div className="header--title">
                 <h1>{title}</h1>
             </div>
-            <nav>
-                <ul className="header--navlinks">
+            <nav className="header--navlinks">
+                <ul>
                     {navLinks.map((element, index) => {
-                        return <li key={index}>{element}</li>
+                        return <li className="header--link" key={index}>{element}</li>
                     })}
                 </ul>
             </nav>
