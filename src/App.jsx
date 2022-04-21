@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login"
+import ProfileInfo from "./components/ProfileInfo"
 import Footer from "./components/Footer";
 import Header from "./components/Header/Header"
 
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<h2>Landpage</h2>} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<ProfileInfo />} />
 
         </Routes>
       </BrowserRouter>
