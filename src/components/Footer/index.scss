@@ -1,4 +1,7 @@
 footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     .socialMedia{
         display: flex;
         justify-content: space-around;
@@ -11,7 +14,7 @@ footer {
     .CompanyName{
         display: flex;
         justify-content: center;
-    }
+    } 
     .timeOfCreation {
         display: flex;
         justify-content: center;
