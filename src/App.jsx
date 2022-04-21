@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login"
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-      {/* <Footer />   */}
+       <Footer />   
     </main>
   );
 }

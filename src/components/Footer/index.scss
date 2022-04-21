@@ -1,0 +1,22 @@
+footer {
+    .socialMedia{
+        display: flex;
+        justify-content: space-around;
+    }
+    .policies{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .CompanyName{
+        display: flex;
+        justify-content: center;
+    }
+    .timeOfCreation {
+        display: flex;
+        justify-content: center;
+    }
+}
+footer > div {
+    padding: 10px 0;
+}
