@@ -48,7 +48,10 @@ const schema = yup.object().shape({
   password: yup.string().required(textContent.validations.reqPassword),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], textContent.validations.confirmPassword),
+    .oneOf(
+      [yup.ref("password"), null],
+      textContent.validations.confirmPassword
+    ),
   email: yup
     .string()
     .email(textContent.validations.validEmail)
@@ -92,7 +95,7 @@ export default function RegisterForm() {
         errors={errorsRegister.password}
         type="password"
       />
-        <TextFieldCustom
+      <TextFieldCustom
         name="confirmPassword"
         control={controlRegister}
         label={textContent.registerForm.confirmPassword}
@@ -100,7 +103,7 @@ export default function RegisterForm() {
         errors={errorsRegister.confirmPassword}
         type="password"
       />
-       <TextFieldCustom
+      <TextFieldCustom
         name="email"
         control={controlRegister}
         label={textContent.registerForm.email}

@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login"
 import Register from "./components/Register";
+import Header from "./components/Header"
 
 function App() {
   return (
     <main className="main-container">
-      {/* <Header />   */}
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<h2>Landpage</h2>} />
