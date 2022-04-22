@@ -1,10 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import TextFieldCustom from "./SubComponents/TextFieldCustom";
-import { Button } from "@mui/material";
+import SelectCustom from "./SubComponents/SelectCustom";
+import { Button, MenuItem } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 const textContent = {
   registerForm: {
     firstName: "Nombre",
@@ -13,7 +13,15 @@ const textContent = {
     confirmPassword: "Repite la contraseña",
     email: "Correo electronico",
     buttonCreate: "Registrarse",
+    language: "Lenguaje",
   },
+  arrayLanguages: [
+    {
+      label: "Español",
+      value: "es",
+    },
+    { label: "Ingles", value: "en" },
+  ],
   validations: {
     minChar: (n, fieldForm) =>
       `El ${fieldForm} debe tener un minimo de ${n} caracteres`,
@@ -70,7 +78,6 @@ export default function RegisterForm() {
   const onSubmit = (data) => {
     console.log("Datos recolectados", data);
   };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldCustom
@@ -111,6 +118,17 @@ export default function RegisterForm() {
         errors={errorsRegister.email}
         type="email"
       />
+      <SelectCustom
+        name="language"
+        control={controlRegister}
+        label={textContent.registerForm.language}
+      >
+        {textContent.arrayLanguages.map((e) => (
+          <MenuItem key={e.value} value={e.value}>
+            {e.label}
+          </MenuItem>
+        ))}
+      </SelectCustom>
 
       <Button variant="contained" type="submit">
         {textContent.registerForm.buttonCreate}
