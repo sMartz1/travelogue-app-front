@@ -1,0 +1,29 @@
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+        padding: 30px 20px
+    }
+}
+.perks{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .single-perk{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 10px;
+        width: 80%;
+        height: 250px;
+        background: #E3E6EC;
+        box-shadow: 4.5px 4.5px 5px #D1D9E6, -4.5px -4.5px 5px #FFFFFF;
+    }
+    .single-perk > img,p,h2 {
+        margin: 5px;
+    }
+}

@@ -1,20 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login"
 import Footer from "./components/Footer";
+import Landpage from "./components/LandPage";
 
 function App() {
-  return (
+  return (<>
     <main className="main-container">
       {/* <Header />   */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<h2>Landpage</h2>} />
+          <Route path="/" element={<Landpage/>} />
           <Route path="/login" element={<Login />} />
-
         </Routes>
       </BrowserRouter>
-       <Footer />   
-    </main>
+       
+    </main> <Footer />  </>
   );
 }
 
