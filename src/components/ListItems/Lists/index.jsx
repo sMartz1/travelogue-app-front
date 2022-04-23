@@ -37,11 +37,11 @@ export default function Lists(elements) {
 
     return (
       <div className="list--container">
-        <div className="list--title"><h2>{elements.title}</h2><div onClick={addItem}><AddCircleRounded/></div></div>  
+        <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={addItem}><AddCircleRounded/></div></div>  
         <ul className="profileinfo--list">
-          {list.map((element, index)=> <li key={index}><div onClick={viewItem}>{element.name}</div>
-          <div onClick={modifyItem}><SettingsRounded/></div>
-          <div onClick={deleteItem}><DeleteRounded/></div></li> )}
+          {list.map((element, index)=> <li key={index}><div className="list--button" onClick={viewItem}>{element.name}</div>
+          <div className="list--button" onClick={modifyItem}><SettingsRounded/></div>
+          <div className="list--button" onClick={deleteItem}><DeleteRounded/></div></li> )}
         </ul>
       </div>
     );

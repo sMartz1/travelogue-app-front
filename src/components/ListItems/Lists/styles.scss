@@ -10,6 +10,9 @@
     display: grid;
     grid-template-columns: 5fr 1fr;
 }
+.list--button{
+    cursor: pointer;
+}
 
 .list--container{
     border-radius: 5px;

@@ -16,11 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<ProfileInfo />} />
-<<<<<<< HEAD
           <Route path="/lists" element={<ListItems />} />
-
-=======
->>>>>>> db65769213da02341bbfcce5017c968af7a95555
         </Routes>
       </BrowserRouter>
     </main> 
