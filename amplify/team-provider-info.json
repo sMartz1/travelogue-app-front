@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-usertraveler-dev-211526-authRole",
+      "UnauthRoleArn": "arn:aws:iam::080697767845:role/amplify-usertraveler-dev-211526-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::080697767845:role/amplify-usertraveler-dev-211526-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-usertraveler-dev-211526-deployment",
+      "UnauthRoleName": "amplify-usertraveler-dev-211526-unauthRole",
+      "StackName": "amplify-usertraveler-dev-211526",
+      "StackId": "arn:aws:cloudformation:eu-west-3:080697767845:stack/amplify-usertraveler-dev-211526/3c660280-c595-11ec-b02b-0ec14da343be",
+      "AmplifyAppId": "d3snm6buhmmy8x"
+    },
+    "categories": {
+      "auth": {
+        "usertravelera04113f7": {}
+      }
+    }
+  }
+}

@@ -6,8 +6,15 @@ import ListItems from "./components/ListItems"
 import Footer from "./components/Footer";
 import Header from "./components/Header/Header"
 import Landpage from "./components/LandPage";
+import withAuthenticator from "./components/withAuthenticator"
+import awsExports from "./aws-exports";
+import Amplify from 'aws-amplify'
+
+import { Authenticator, IconReportGmailerrorred } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
+Amplify.configure(awsExports);
 function App() {
-  return (<>
+  return (<Authenticator>
     <Header />
     <main className="main-container">
       <BrowserRouter>
@@ -21,7 +28,7 @@ function App() {
       </BrowserRouter>
     </main> 
     <Footer /> 
-    </>
+    </Authenticator>
   );
 }
 
