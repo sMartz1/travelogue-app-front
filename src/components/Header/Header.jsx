@@ -1,4 +1,14 @@
+
+import { Auth } from 'aws-amplify';
 const Header = () => {
+
+async function signOut() {
+    try {
+        await Auth.signOut();
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+}
     const title = "Travelogue App"
     const navLinks = ["Home", "Login", "Features"]
 
@@ -9,6 +19,7 @@ const Header = () => {
             </div>
             <nav className="header--navlinks">
                 <ul>
+                    <li onClick={signOut}>Sign Out</li>
                     {navLinks.map((element, index) => {
                         return <li className="header--link" key={index}>{element}</li>
                     })}
