@@ -1,18 +1,23 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 import TextFieldCustom from "./SubComponents/TextFieldCustom";
 import { Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Auth } from 'aws-amplify';
+import '@aws-amplify/ui-react/styles.css';
 
 //Temporary mocked data
 const textContent = {
   loginForm: {
     username: "Nombre de usuario",
     password: "Contraseña",
+    forgottenPassword: "He olvidado la contraseña",
     buttonLogin: "Login",
   },
   validations: {
+    validEmail: "Introduce un email valido",
     minChar: (n, fieldForm) =>
       `El ${fieldForm} debe tener un minimo de ${n} caracteres`,
   },
@@ -22,8 +27,8 @@ const textContent = {
 const schema = yup.object().shape({
   username: yup
     .string()
-    .min(3, textContent.validations.minChar(3, textContent.loginForm.username))
-    .required(),
+    .email(textContent.validations.validEmail)
+    .required(textContent.validations.reqEmail),
   password: yup
     .string()
     .min(5, textContent.validations.minChar(5, textContent.loginForm.password))
@@ -31,6 +36,8 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
+  const navigate = useNavigate();
+
   const {
     control: controlLogin,
     handleSubmit,
@@ -38,10 +45,24 @@ export default function LoginForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  async function signIn(data) {//si la contraseña es erronea devuelve un 400
+    try {
+      await Auth.signIn(data.username, data.password);
+      navigate(`/profile`)   
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
   const onSubmit = (data) => {
-    console.log("Datos recolectados", data);
+    signIn(data);
   };
-  return (
+
+  const forgotPassword = (data) => {
+    navigate('/forgottenpassword')
+  };
+  return (<>
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldCustom
         name="username"
@@ -58,9 +79,11 @@ export default function LoginForm() {
         errors={errorsLogin.password}
         type="password"
       />
+      <p className="forgotten--password-link" onClick={forgotPassword}>{textContent.loginForm.forgottenPassword}</p>
       <Button variant="contained" type="submit">
         {textContent.loginForm.buttonLogin}
       </Button>
     </form>
+  </>
   );
 }
