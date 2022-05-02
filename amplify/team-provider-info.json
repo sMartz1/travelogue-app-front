@@ -13,7 +13,10 @@
     },
     "categories": {
       "auth": {
-        "travelogue": {}
+        "travelogue": {
+          "facebookAppId": "1849512371908200",
+          "googleClientId": "112476119412015923105"
+        }
       }
     }
   }
