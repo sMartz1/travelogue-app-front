@@ -16,7 +16,7 @@
           "NAME"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyMinLength": "8",
+          "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": [
             "REQUIRES_LOWERCASE",
             "REQUIRES_UPPERCASE",

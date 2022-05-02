@@ -3,7 +3,7 @@ import ChangePassForm from "../Forms/ChangePassForm";
 
 export default function Register() {
   return (
-    <div className="form-register-container">
+    <div className="form-change-container">
       <ChangePassForm />
     </div>
   );

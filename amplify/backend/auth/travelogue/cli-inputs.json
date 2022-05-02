@@ -1,9 +1,7 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "travelogue",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "travelc42e3ef9",
+    "resourceNameTruncated": "traveld4b0e280",
     "userPoolName": "travelogue",
     "autoVerifiedAttributes": [
       "email"
@@ -17,7 +15,7 @@
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
-    "passwordPolicyMinLength": "8",
+    "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
       "Requires Lowercase",
       "Requires Uppercase",
@@ -40,13 +38,14 @@
     "userpoolClientReadAttributes": [
       "email",
       "family_name",
-      "name"
+      "name",
+      "zoneinfo"
     ],
-    "userpoolClientLambdaRole": "travelc42e3ef9_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
-    "sharedId": "c42e3ef9",
+    "userpoolClientLambdaRole": "traveld4b0e280_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": true,
+    "sharedId": "d4b0e280",
     "resourceName": "travelogue",
-    "authSelections": "identityPoolAndUserPool",
+    "authSelections": "userPoolOnly",
     "useDefault": "manual",
     "usernameAttributes": [
       "email"
@@ -57,8 +56,7 @@
     "hostedUI": false,
     "userPoolGroupList": [],
     "serviceName": "Cognito",
-    "usernameCaseSensitive": false,
-    "useEnabledMfas": true,
+    "useEnabledMfas": false,
     "authRoleArn": {
       "Fn::GetAtt": [
         "AuthRole",
@@ -71,16 +69,12 @@
         "Arn"
       ]
     },
-    "breakCircularDependency": true,
+    "breakCircularDependency": false,
     "dependsOn": [],
-    "thirdPartyAuth": true,
-    "authProviders": [
-      "graph.facebook.com",
-      "accounts.google.com"
-    ],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "authProviders": []
   }
 }

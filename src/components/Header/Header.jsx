@@ -24,7 +24,6 @@ const Header = () => {
                     })}
                 </ul>
             </nav>
-            b
         </header>
     )
 

@@ -98,7 +98,8 @@ export default function RegisterForm() {
             attributes: {
                 family_name:newuser.lastName,          
                 name:newuser.firstName,
-                'custom:language':newuser.language  
+                'custom:language':newuser.language,
+                zoneinfo:newuser.language
             }
         });
         setConfirmView(true); //open modal to send confirmation code
