@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-travelogue-dev-200006-authRole",
+      "UnauthRoleArn": "arn:aws:iam::080697767845:role/amplify-travelogue-dev-200006-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::080697767845:role/amplify-travelogue-dev-200006-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-travelogue-dev-200006-deployment",
+      "UnauthRoleName": "amplify-travelogue-dev-200006-unauthRole",
+      "StackName": "amplify-travelogue-dev-200006",
+      "StackId": "arn:aws:cloudformation:eu-west-1:080697767845:stack/amplify-travelogue-dev-200006/8a98c910-c978-11ec-b8df-067e25aaaded",
+      "AmplifyAppId": "dr2of0m1n166j"
+    },
+    "categories": {
+      "auth": {
+        "travelogue": {
+          "facebookAppId": "1849512371908200",
+          "googleClientId": "112476119412015923105"
+        }
+      }
+    }
+  }
+}
