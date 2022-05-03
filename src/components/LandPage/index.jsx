@@ -3,7 +3,7 @@ import Discover from '../../assets/scss/images/discover.png'
 import Easy from '../../assets/scss/images/easy.png'
 import Share from '../../assets/scss/images/share.png'
 import "./index.scss"
-
+import PlaceForm from '../Forms/PlaceForm'
 
 const textContent = {
     title: {
@@ -32,6 +32,7 @@ export default function Landpage(){
                 <h2>{e.perkTitle}</h2>
                 <p>{e.perkDescription}</p>
             </div>)}
+            <PlaceForm/>
     </div>
      
     </>
