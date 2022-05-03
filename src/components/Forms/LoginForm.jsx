@@ -36,10 +36,9 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
-<<<<<<< HEAD
-=======
+
   const navigate = useNavigate();
->>>>>>> 6d8ab48d62f62ef11a91948774383eafb5daa28c
+
 
   const {
     control: controlLogin,
