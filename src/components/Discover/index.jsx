@@ -4,9 +4,15 @@ const Discover = () => {
 
     return (
         <section className="discover--main">
-            <Carrousel />
-            <Carrousel />
-            <Carrousel />
+            <div className="discover--slot">
+                <Carrousel />
+            </div>
+            <div className="discover--slot">
+                <Carrousel />
+            </div>
+            <div className="discover--slot">
+                <Carrousel />
+            </div>
         </section>
     )
 }
