@@ -6,7 +6,7 @@ import ForgottenPassword from "./components/ForgottenPassword";
 import ChangePassword from "./components/ChangePassword";
 import ListItems from "./components/ListItems"
 import Footer from "./components/Footer";
-import Header from "./components/Header/Header"
+import Header from "./components/Header"
 import Landpage from "./components/LandPage";
 function App() {
   return (<>s
