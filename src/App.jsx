@@ -8,6 +8,7 @@ import ListItems from "./components/ListItems"
 import Footer from "./components/Footer";
 import Header from "./components/Header"
 import Landpage from "./components/LandPage";
+import Discover from "./components/Discover";
 function App() {
   return (<>s
     <Header />
@@ -21,6 +22,7 @@ function App() {
           <Route path="/forgottenpassword" element={<ForgottenPassword />} />
           <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="/lists" element={<ListItems />} />
+          <Route path="/discover" element={<Discover />} />
         </Routes>
       </BrowserRouter>
     </main> 
