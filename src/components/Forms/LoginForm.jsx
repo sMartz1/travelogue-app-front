@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , NavLink } from 'react-router-dom';
 import TextFieldCustom from "./SubComponents/TextFieldCustom";
 import { Button } from "@mui/material";
 import * as yup from "yup";
@@ -15,6 +15,7 @@ const textContent = {
     password: "Contraseña",
     forgottenPassword: "He olvidado la contraseña",
     buttonLogin: "Login",
+    noaccount: "No tengo cuenta"
   },
   validations: {
     validEmail: "Introduce un email valido",
@@ -59,9 +60,6 @@ export default function LoginForm() {
     signIn(data);
   };
 
-  const forgotPassword = (data) => {
-    navigate('/forgottenpassword')
-  };
   return (<>
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldCustom
@@ -79,10 +77,11 @@ export default function LoginForm() {
         errors={errorsLogin.password}
         type="password"
       />
-      <p className="forgotten--password-link" onClick={forgotPassword}>{textContent.loginForm.forgottenPassword}</p>
+      <NavLink className='aux-links' to ={`/forgottenpassword`}>{textContent.loginForm.forgottenPassword}</NavLink>
       <Button variant="contained" type="submit">
         {textContent.loginForm.buttonLogin}
       </Button>
+      <NavLink className='aux-links' to ={`/register`}>{textContent.loginForm.noaccount}</NavLink>
     </form>
   </>
   );
