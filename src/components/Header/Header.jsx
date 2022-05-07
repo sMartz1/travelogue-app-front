@@ -1,17 +1,31 @@
+import { useContext , useEffect } from 'react';
+import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
 
+const textContent = {
+    navLink: {
+        logged: ["Home","Profile","Logout"]
+        ,
+        nologged: ["Home","Register","Login"]
+    },
+    title: "Travelogue App",
+  };
 
 const Header = () => {
+    const [user, setUser] = useContext(UserContext);
     const title = "Travelogue App"
     const navLinks = ["Home", "Login", "Features"]
-   /*  const loggedUserJSON = window.localStorage.getItem('userlogged'); */
     async function signOut() {
         try {
-            await Auth.signOut();
+            const response = await Auth.signOut();
+            setUser({})
+            console.log('logout')
+            console.log(response)
         } catch (error) {
             console.log('error signing out: ', error);
         }
     }
+    console.log(user);
     return(
         <header className="header--main">
             <div className="header--title">
@@ -19,7 +33,10 @@ const Header = () => {
             </div>
             <nav className="header--navlinks">
                 <ul>
-                    {navLinks.map((element, index) => {
+                    {user.email? textContent.navLink.logged.map((element, index) => {
+                        return <li className="header--link" key={index}>{element}</li>
+                    }):
+                    textContent.navLink.nologged.map((element, index) => {
                         return <li className="header--link" key={index}>{element}</li>
                     })}
                 </ul>

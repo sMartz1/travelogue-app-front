@@ -1,12 +1,13 @@
-import React from "react";
+import React,{ useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import TextFieldCustom from "./SubComponents/TextFieldCustom";
 import { Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
-import '@aws-amplify/ui-react/styles.css';
+/* import '@aws-amplify/ui-react/styles.css'; */
 
 //Temporary mocked data
 const textContent = {
@@ -36,6 +37,7 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
+  const [user, setUser] = useContext(UserContext);
   const navigate = useNavigate();
 
   const {
@@ -48,8 +50,10 @@ export default function LoginForm() {
 
   async function signIn(data) {//si la contraseña es erronea devuelve un 400
     try {
-      await Auth.signIn(data.username, data.password);
-      navigate(`/profile`)   
+      const response = await Auth.signIn(data.username, data.password);
+      console.log(response)
+      setUser({...response.attributes}) //setting UserContext with user data
+      navigate(`/profile`)   //rendering ProfileInfo page
     } catch (error) {
         console.log(error);
     }

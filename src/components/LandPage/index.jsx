@@ -1,8 +1,12 @@
+import { useContext , useEffect } from 'react';
 import TravelLand from '../../assets/scss/images/travelLand.png'
 import Discover from '../../assets/scss/images/discover.png'
 import Easy from '../../assets/scss/images/easy.png'
 import Share from '../../assets/scss/images/share.png'
+import { UserContext } from '../../App';
+import { Auth } from 'aws-amplify';
 import "./index.scss"
+
 
 
 const textContent = {
@@ -20,6 +24,21 @@ const textContent = {
 const imageSize = '50px'
 
 export default function Landpage(){
+    const [user, setUser] = useContext(UserContext);
+
+    async function iscurrentSession() {//devuelve el localstorage del cognito
+        try {
+          await Auth.currentSession();
+          const userdatas = await Auth.currentUserInfo();
+          setUser({...userdatas.attributes})
+    
+        } catch (error) {
+            console.log(error);
+        }
+      }
+    useEffect(() => {
+        iscurrentSession();
+    }, [])
 
     return <><section> 
         <h1>{textContent.title.slogan}</h1>

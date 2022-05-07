@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@mui/material";
+import { UserContext } from '../../App';
+
 
 
 //Temporary mocked data
-const user = {
+const usermock = {
     username: "x",
     firstname: "Juan",
     lastname: "Palomo",
@@ -17,8 +19,10 @@ const textContent = {
   button:"Modify",
 };
 export default function Profileinfo() {
+  const [user, setUser] = useContext(UserContext);
   const valuesdata = Object.values(user);
   console.log(valuesdata);
+  console.log(user)
  
   return (
     <div className="profileinfo--container">
