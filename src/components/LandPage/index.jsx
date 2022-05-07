@@ -1,8 +1,12 @@
+import { useContext , useEffect } from 'react';
 import TravelLand from '../../assets/scss/images/travelLand.png'
 import Discover from '../../assets/scss/images/discover.png'
 import Easy from '../../assets/scss/images/easy.png'
 import Share from '../../assets/scss/images/share.png'
+import { UserContext } from '../../App';
+import { Auth } from 'aws-amplify';
 import "./index.scss"
+
 
 
 const textContent = {
@@ -20,6 +24,21 @@ const textContent = {
 const imageSize = '50px'
 
 export default function Landpage(){
+    const [user, setUser] = useContext(UserContext);
+
+    async function iscurrentSession() {
+        try {
+          await Auth.currentSession();//checks there's a valid user logged and if its session is still valid
+          const userdatas = await Auth.currentUserInfo();//gets logged users data
+          setUser({...userdatas.attributes})
+    
+        } catch (error) {
+            setUser({})
+        }
+      }
+    useEffect(() => {
+        iscurrentSession();
+    }, [])
 
     return <><section> 
         <h1>{textContent.title.slogan}</h1>

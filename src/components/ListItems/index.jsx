@@ -1,6 +1,8 @@
-import React from "react";
+import React , { useContext } from "react";
 import { Button } from "@mui/material";
 import Lists from "./Lists"
+import { UserContext } from '../../App';
+
 
 
 //Temporary mocked data
@@ -20,7 +22,8 @@ const textContent = {
   button:"back"
 };
 export default function ListItems() {
-  
+  const [user, setUser] = useContext(UserContext);
+
  
   return (
     <div className="list--main--container">
