@@ -26,14 +26,14 @@ const imageSize = '50px'
 export default function Landpage(){
     const [user, setUser] = useContext(UserContext);
 
-    async function iscurrentSession() {//devuelve el localstorage del cognito
+    async function iscurrentSession() {
         try {
-          await Auth.currentSession();
-          const userdatas = await Auth.currentUserInfo();
+          await Auth.currentSession();//checks there's a valid user logged and if its session is still valid
+          const userdatas = await Auth.currentUserInfo();//gets logged users data
           setUser({...userdatas.attributes})
     
         } catch (error) {
-            console.log(error);
+            setUser({})
         }
       }
     useEffect(() => {

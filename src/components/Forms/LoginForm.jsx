@@ -7,7 +7,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
-/* import '@aws-amplify/ui-react/styles.css'; */
 
 //Temporary mocked data
 const textContent = {
@@ -38,11 +37,7 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
-<<<<<<< HEAD
   const [user, setUser] = useContext(UserContext);
-=======
-
->>>>>>> 6800c89e4b81606e3718613cece62587de3b7d85
   const navigate = useNavigate();
 
 
@@ -57,7 +52,6 @@ export default function LoginForm() {
   async function signIn(data) {//si la contraseña es erronea devuelve un 400
     try {
       const response = await Auth.signIn(data.username, data.password);
-      console.log(response)
       setUser({...response.attributes}) //setting UserContext with user data
       navigate(`/profile`)   //rendering ProfileInfo page
     } catch (error) {

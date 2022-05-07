@@ -1,4 +1,4 @@
-import { useContext , useEffect } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
 
@@ -17,15 +17,14 @@ const Header = () => {
     const navLinks = ["Home", "Login", "Features"]
     async function signOut() {
         try {
-            const response = await Auth.signOut();
+            await Auth.signOut();
             setUser({})
-            console.log('logout')
-            console.log(response)
+            
         } catch (error) {
             console.log('error signing out: ', error);
         }
     }
-    console.log(user);
+    
     return(
         <header className="header--main">
             <div className="header--title">
