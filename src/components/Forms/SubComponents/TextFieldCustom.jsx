@@ -18,6 +18,7 @@ export default function TextFieldCustom({name,control,label,id,errors,type}) {
             error={!!errors}
             type={type?type:"text"}
             helperText={errors ? errors?.message : ""}
+
           />
         )} 
       />
