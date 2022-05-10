@@ -1,9 +1,44 @@
-.Swiper{
-   .swiper-wrapper {
-    padding: 15px ;
-    }
-    .swiper-pagination {
-     position: relative;
-     bottom: 1000px;
-    } 
+.swiper{
+    display: flex;
+    flex-direction: row;
+    background-color: #417d7a4a;
+    box-shadow: 0 0 10px #1A3C40;
+    padding-top: 5px;
+}
+
+
+.swiper-pagination {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    gap: 20%;
+    margin-top: 10%;
+    padding-top: 2%;
+    height: 45px;
+}
+
+.swiper-thumb {
+    margin-top: 20px;
+}
+
+.swiper-wrapper {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.carrousel--img-slider{
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 0 10px #1A3C40;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.carrousel--img-slider:hover{
+    box-shadow: 0 0 20px #1A3C40;
+}
+
+.swiper-slider{
+    text-align: center;
 }
