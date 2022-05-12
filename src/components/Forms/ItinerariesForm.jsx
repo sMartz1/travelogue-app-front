@@ -67,14 +67,13 @@ export default function ItinerariesForm() {
   const handlePoint = ()=> {
     const data = {place:place,time:time.current.value,date:date.current.value};
     points.push(data);
+    setPoints([...points])
     setAddPoint(false)
   }
   
   const deletePoint = (i)=> {
-    /* setPoints(points.splice(i,1)) */
-    setAddPoint(true)
     points.splice(i,1);
-    setAddPoint(false)
+    setPoints([...points])
   }
   
   
@@ -83,7 +82,7 @@ export default function ItinerariesForm() {
   };
 
   useEffect(() => {
-  },[addPoint])
+  },[points])
 
   useEffect(() => {
     const getPlaces = async () => {
