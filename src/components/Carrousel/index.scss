@@ -1,9 +1,11 @@
 .swiper{
     display: flex;
     flex-direction: row;
+    position: relative;
     background-color: #417d7a4a;
     box-shadow: 0 0 10px #1A3C40;
     padding-top: 5px;
+    padding-bottom: 50px;
 }
 
 
@@ -12,19 +14,14 @@
     flex-direction: row;
     text-align: center;
     justify-content: center;
-    gap: 20%;
-    margin-top: 10%;
-    padding-top: 2%;
+    position: absolute;
+    gap: 3%;
+    top: 260px;
     height: 45px;
 }
 
 .swiper-thumb {
     margin-top: 20px;
-}
-
-.swiper-wrapper {
-    padding: 5px;
-    margin-bottom: 10px;
 }
 
 .carrousel--img-slider{
@@ -33,6 +30,11 @@
     box-shadow: 0 0 10px #1A3C40;
     border-radius: 5px;
     cursor: pointer;
+
+    @media (max-width:800px) {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 .carrousel--img-slider:hover{
