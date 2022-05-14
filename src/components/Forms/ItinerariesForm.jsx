@@ -6,13 +6,13 @@ import SelectCustom from "./SubComponents/SelectCustom";
 import { Button, MenuItem } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
+import getUserPlaces from '../../helpers/getUserPlaces';
 import {
   SettingsRounded,
   AddCircleRounded,
   DeleteRounded
 } from "@mui/icons-material";
-
+import { Auth } from 'aws-amplify';
 
 
 const textContent = {
@@ -84,20 +84,19 @@ export default function ItinerariesForm() {
   useEffect(() => {
   },[points])
 
-  useEffect(() => {
-    const getPlaces = async () => {
-      try {
-              const response = await axios.get(`http://localhost:3003/api/places/all/f9badfe9-f0fb-49f8-a8af-144f32d47bde`);
-      setArrayPlaces([...response.data.own])
-      return response.data.own
-      }
-      catch(err) {
-        console.log(err)
-      }
+  
+  const handlePlaces = async () => {
 
+    try {
+      const userdatas = await Auth.currentUserInfo();
+      const res = await getUserPlaces(userdatas.username)
+      setArrayPlaces([...res])
     }
-    const dataplaces = getPlaces()
-    console.log(dataplaces)
+    catch (err) {console.log(err)}
+  }
+  
+  useEffect( () => {
+    handlePlaces()
   }, [])
 
   return (
