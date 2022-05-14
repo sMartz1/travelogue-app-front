@@ -27,4 +27,22 @@
 
     }
 }
-
+.itineraries {
+    width:50%;
+    margin:auto;
+    display:flex;
+    flex-direction: column;
+}
+.intermediate--points--head {
+    display:flex;
+}
+.intermediate--points--unit {
+    display: flex;
+}
+.points {
+    width:100%;
+    margin:auto;
+    display: flex;
+    place-content: center;
+    place-items: center;
+}
