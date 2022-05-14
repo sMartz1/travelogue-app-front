@@ -16,9 +16,9 @@ function App() {
   const [ user , setUser ] = useState({})
   return (<>
     <UserContext.Provider value={[user,setUser]}>
-      <Header />
       <main className="main-container">
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<Landpage/>} />
             <Route path="/login" element={<Login />} />
