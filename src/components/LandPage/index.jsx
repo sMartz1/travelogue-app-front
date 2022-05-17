@@ -51,6 +51,7 @@ export default function Landpage(){
                 <h2>{e.perkTitle}</h2>
                 <p>{e.perkDescription}</p>
             </div>)}
+   
            
     </div>
      

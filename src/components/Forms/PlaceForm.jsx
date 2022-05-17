@@ -4,14 +4,20 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import FileCustom from "./SubComponents/FileCustom"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from '../../App';
+import { uploadFile } from 'react-s3';
+import {config} from "../config/config-s3"
+import axios from 'axios'
 
+window.Buffer = window.Buffer || require("buffer").Buffer; 
 
 /* A constant that contains the text that will be displayed in the form. */
 const textContent = {
   placeForm: {
     name: "Name of the place",
     price:"Estimated Price",
+    location:"location",
     buttonPlace: "Create Place",
   },
   validations: {
@@ -27,18 +33,24 @@ const schema = yup.object().shape({
     .string()
     .min(5, textContent.validations.minChar(5, textContent.placeForm.name))
     .required(),
-    price:yup
-    .number()
+  price:yup
+    .number(),
+  location : yup
+    .string()
+    .required('location is required')
     
 
 });
 
 const imgSize = "50px"
 
-export default function PlaceForm() {
+export default function PlaceForm() { 
+  const [user, setUser] = useContext(UserContext);
   const [file, setFile] = useState(null)
   const [previewImg,setPreviewImg] = useState(null)
+  const [urlS3,setUrlS3] = useState('')
 
+  
   const {
     control: controlPlace,
     handleSubmit,
@@ -46,14 +58,25 @@ export default function PlaceForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    console.log("Datos recolectados", data,file);
+  const onSubmit = async (data_form) => {
+    await 
+      uploadFile(file, config)
+        .then(data => setUrlS3(data.location))
+        .catch(err => console.error(err))
+    await 
+      axios.post('http://localhost:3003/api/places/createPlace',{
+        name:data_form.name,
+        price : data_form.price,
+        location : data_form.location,
+        path_image: urlS3,
+        id_user:user.sub
+    })  
+
   };
 
   useEffect(()=> {
     if(file){
       const img = URL.createObjectURL(file)
-      console.log(img)
       setPreviewImg(img)
     }
   },[file])
@@ -75,6 +98,11 @@ export default function PlaceForm() {
     label={textContent.placeForm.price}
     id="place-price"
     errors={errorsPlace.price}/>
+    <TextFieldCustom name="location"
+    control = {controlPlace}
+    label={textContent.placeForm.location}
+    id="place-location"
+    errors={errorsPlace.location}/>
     <Button variant="contained" type="submit">
       {textContent.placeForm.buttonPlace}
     </Button>
