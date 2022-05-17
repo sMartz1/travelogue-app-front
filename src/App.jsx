@@ -9,6 +9,7 @@ import ListItems from "./components/ListItems"
 import Footer from "./components/Footer";
 import Header from "./components/Header/Header"
 import Landpage from "./components/LandPage";
+import ItinerariesForm from "./components/Forms/ItinerariesForm";
 
 export const UserContext = createContext(null);
 
@@ -16,9 +17,9 @@ function App() {
   const [ user , setUser ] = useState({})
   return (<>
     <UserContext.Provider value={[user,setUser]}>
-      <Header />
       <main className="main-container">
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<Landpage/>} />
             <Route path="/login" element={<Login />} />
@@ -27,6 +28,7 @@ function App() {
             <Route path="/forgottenpassword" element={<ForgottenPassword />} />
             <Route path="/changepassword" element={<ChangePassword />} />
             <Route path="/lists" element={<ListItems />} />
+            <Route path="/createitinerary" element={<ItinerariesForm />} />
           </Routes>
         </BrowserRouter>
       </main> 
