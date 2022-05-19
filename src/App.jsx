@@ -1,9 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-<<<<<<< HEAD
-import { createContext , useState,useEffect, useContext } from 'react'
-=======
-import { createContext, useState } from 'react'
->>>>>>> d6ca3b4928c82ccd727e17b1c6d88bf51b9c917c
+import { createContext } from 'react'
 import Login from "./components/Login"
 import Register from "./components/Register";
 import ProfileInfo from "./components/ProfileInfo"
