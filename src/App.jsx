@@ -11,28 +11,33 @@ import Header from "./components/Header"
 import Landpage from "./components/LandPage";
 import Discover from "./components/Discover"
 import ItinerariesForm from "./components/Forms/ItinerariesForm";
+import PlaceView from "./components/PlaceView";
+import { CreatePlaceView } from "./components/createPlaceView";
 
 export const UserContext = createContext(null);
 
 function App() {
+  const [user, setUser] = useState({});
   return (<>
-    <Header />
-    <main className="main-container">
+    <UserContext.Provider value={[user, setUser]}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Landpage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<ProfileInfo />} />
-          <Route path="/forgottenpassword" element={<ForgottenPassword />} />
-          <Route path="/changepassword" element={<ChangePassword />} />
-          <Route path="/lists" element={<ListItems />} />
-          <Route path="/createitinerary" element={<ItinerariesForm />} />
-          <Route path="/discover" element={<Discover />} />
-        </Routes>
+        <Header />
+        <main className="main-container">
+          <Routes>
+            <Route path="/" element={<Landpage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<ProfileInfo />} />
+            <Route path="/forgottenpassword" element={<ForgottenPassword />} />
+            <Route path="/changepassword" element={<ChangePassword />} />
+            <Route path="/lists" element={<ListItems />} />
+            <Route path="/createitinerary" element={<ItinerariesForm />} />
+            <Route path="/discover" element={<Discover />} />
+          </Routes>
+        </main>
       </BrowserRouter>
-    </main>
-    <Footer />
+      <Footer />
+    </UserContext.Provider>
   </>)
 }
 export default App

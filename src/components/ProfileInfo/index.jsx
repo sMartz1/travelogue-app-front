@@ -27,6 +27,7 @@ export default function Profileinfo() {
   }
   useEffect(() => {
       iscurrentSession();
+      console.log(user)
   }, [user])
   
 
