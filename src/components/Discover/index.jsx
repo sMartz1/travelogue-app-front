@@ -14,7 +14,7 @@ const Discover = () => {
     const call = async () => {
         const response = await callToApi();
         setPlaces(response[0])
-        setItineraries(response[0])
+        setItineraries(response[1])
         console.log(response)
     }
 

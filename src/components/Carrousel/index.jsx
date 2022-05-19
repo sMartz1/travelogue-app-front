@@ -25,6 +25,10 @@ export function Carrousel(props) {
             spaceBetween={10}
             slidesPerGroup={5}
             breakpoints={{
+                250: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
                 420: {
                     slidesPerView: 2,
                     spaceBetween: 20
