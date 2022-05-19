@@ -9,8 +9,14 @@ export const AuthProvider = ({ children }) => {
 
   async function iscurrentSession() {
     try {
-      await Auth.currentSession();
+      const currentSession = await Auth.currentSession();
+      console.log('currentSesion',currentSession);
       const userdata = await Auth.currentUserInfo();
+      console.log('currentUserInfo',userdata);
+      const currentAuthenticatedUser = await Auth.currentAuthenticatedUser();
+      console.log('currentAuthenticatedUser',currentAuthenticatedUser);
+      const currentUserInfo = await Auth.currentUserInfo();
+      console.log('currentUserInfo',currentUserInfo);
       setUser(userdata.attributes);
       console.log(userdata.atributes);
       setLoading(false);

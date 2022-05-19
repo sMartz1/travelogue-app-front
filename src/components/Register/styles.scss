@@ -1,12 +1,14 @@
 .form-register-container{
     form{
         height: 100%;
+        
         display: flex;
         flex-flow: column;
         align-items: center;
         width: minmax(500px,300px);
         >*{
            margin-top: 1.2rem;
+           width:300px;
         }
     }
 }
