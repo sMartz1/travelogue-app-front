@@ -1,0 +1,27 @@
+.itinerary-map {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  .itinerary-place-list {
+      width: 30%;
+  }
+  .itinerary-map-container {
+    height: 500px;
+    width: 500px;
+  }
+}
+
+@media (max-width:550px){
+    .itinerary-map {
+        flex-flow: column;
+        .itinerary-place-list {
+            width: 100%;
+        }
+        .itinerary-map-container {
+            height: 300px;
+            width: 100%;
+          }
+    }
+}

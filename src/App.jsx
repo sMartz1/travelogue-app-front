@@ -10,8 +10,10 @@ import Footer from "./components/Footer";
 import Header from "./components/Header/Header"
 import Landpage from "./components/LandPage";
 import ItinerariesForm from "./components/Forms/ItinerariesForm";
+import Itinerary from "./components/Itinerary";
 import PlaceView from "./components/PlaceView";
 import { CreatePlaceView } from "./components/createPlaceView";
+
 
 export const UserContext = createContext(null);
 
@@ -31,8 +33,10 @@ function App() {
             <Route path="/changepassword" element={<ChangePassword />} />
             <Route path="/lists" element={<ListItems />} />
             <Route path="/createitinerary" element={<ItinerariesForm />} />
+            <Route path="/itinerary" element={<Itinerary />} />
             <Route path="/place/:id" element={<PlaceView />} />
-            <Route path='createPlace' element={<CreatePlaceView/>}/>
+            <Route path='/createPlace' element={<CreatePlaceView/>}/>
+
           </Routes>
         </BrowserRouter>
       </main> 
