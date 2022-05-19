@@ -6,6 +6,8 @@ import Share from '../../assets/scss/images/share.png'
 import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
 import "./index.scss"
+import PlaceForm from '../Forms/PlaceForm';
+import { useAuth } from '../Context/userContext';
 
 
 
@@ -24,23 +26,9 @@ const textContent = {
 const imageSize = '50px'
 
 export default function Landpage(){
-    const [user, setUser] = useContext(UserContext);
+    const {user} = useAuth();
 
-    async function iscurrentSession() {
-        try {
-          await Auth.currentSession();//checks there's a valid user logged and if its session is still valid
-          const userdatas = await Auth.currentUserInfo();//gets logged users data
-          setUser({...userdatas.attributes})
-    
-        } catch (error) {
-            setUser({})
-        }
-      }
-    useEffect(() => {
-        iscurrentSession();
-    }, [])
-
-    return <><section> 
+    return <><section className='landpage--main'> 
         <h1>{textContent.title.slogan}</h1>
         <img width='300px' height='300px' src={textContent.title.imageUrl} alt=''/>
     </section>
@@ -51,7 +39,6 @@ export default function Landpage(){
                 <h2>{e.perkTitle}</h2>
                 <p>{e.perkDescription}</p>
             </div>)}
-           
     </div>
      
     </>

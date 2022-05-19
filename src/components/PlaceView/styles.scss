@@ -1,0 +1,12 @@
+.place--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+.place--form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+}

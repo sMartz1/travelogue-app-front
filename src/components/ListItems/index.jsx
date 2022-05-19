@@ -1,10 +1,10 @@
-import React , { useContext , useState , useEffect , createContext} from "react";
+import React , { useState , useEffect , createContext} from "react";
 import { Button } from "@mui/material";
 import Lists from "./Lists"
-import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
 import getUserItineraries from '../../helpers/getUserItineraries';
 import getUserPlaces from '../../helpers/getUserPlaces';
+import { useAuth } from "../Context/userContext";
 
 export const UserItinerariesContext = createContext(null);
 
@@ -14,7 +14,7 @@ const textContent = {
   button:"back"
 };
 export default function ListItems() {
-  const [user, setUser] = useContext(UserContext);
+  const {user} = useAuth();
   const [arrayItineraries, setArrayItineraries] = useState([]);
   const [arrayPlaces, setArrayPlaces] = useState([]);
 

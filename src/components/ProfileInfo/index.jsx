@@ -2,8 +2,7 @@ import React, { useContext , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@mui/material";
 import { UserContext } from '../../App';
-import { Auth } from 'aws-amplify';
-
+import { useAuth } from "../Context/userContext";
 
 
 
@@ -14,24 +13,14 @@ const textContent = {
   button:"Modify",
 };
 export default function Profileinfo() {
-  const [user, setUser] = useContext(UserContext);
+  const { user } = useAuth();
   const navigate = useNavigate();
-  const valuesdata = Object.values(user);
-  async function iscurrentSession() {
-    try {
-      await Auth.currentSession();
-    //checks there's a valid user logged and redirect to landing page in case we logout on this page.
-    } catch (error) {
-        navigate(`/`)
-    }
-  }
-  useEffect(() => {
-      iscurrentSession();
-  }, [user])
-  
+    const valuesdata = Object.values(user);
 
 
-  return (
+
+
+  return user? (
     <div className="profileinfo--container">
       <h2>{textContent.title}</h2>    
       <ul className="profileinfo--list">
@@ -42,5 +31,5 @@ export default function Profileinfo() {
         {textContent.button}
       </Button>
     </div>
-  );
+  ):'Loading';
 }
