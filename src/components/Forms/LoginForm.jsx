@@ -1,12 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import TextFieldCustom from "./SubComponents/TextFieldCustom";
 import { Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Auth } from 'aws-amplify';
-import '@aws-amplify/ui-react/styles.css';
+import { Auth } from "aws-amplify";
+import "@aws-amplify/ui-react/styles.css";
+import { useAuth } from "../Context/userContext";
 
 //Temporary mocked data
 const textContent = {
@@ -36,12 +37,10 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
-
+  const { signIn } = useAuth();
   const navigate = useNavigate();
 
-
   const {
-    
     control: controlLogin,
     handleSubmit,
     formState: { errors: errorsLogin },
@@ -49,44 +48,39 @@ export default function LoginForm() {
     resolver: yupResolver(schema),
   });
 
-  async function signIn(data) {//si la contraseña es erronea devuelve un 400
-    try {
-      await Auth.signIn(data.username, data.password);
-      navigate(`/profile`)   
-    } catch (error) {
-        console.log(error);
-    }
-  }
-
-  const onSubmit = (data) => {
-    signIn(data);
+  const onSubmit = async (data) => {
+    const sign = await signIn(data);
+    if(sign)navigate('/');
   };
 
   const forgotPassword = (data) => {
-    navigate('/forgottenpassword')
+    navigate("/forgottenpassword");
   };
-  return (<>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextFieldCustom
-        name="username"
-        control={controlLogin}
-        label={textContent.loginForm.username}
-        id="login-input"
-        errors={errorsLogin.username}
-      />
-      <TextFieldCustom
-        name="password"
-        control={controlLogin}
-        label={textContent.loginForm.password}
-        id="password-input"
-        errors={errorsLogin.password}
-        type="password"
-      />
-      <p className="forgotten--password-link" onClick={forgotPassword}>{textContent.loginForm.forgottenPassword}</p>
-      <Button variant="contained" type="submit">
-        {textContent.loginForm.buttonLogin}
-      </Button>
-    </form>
-  </>
+  return (
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextFieldCustom
+          name="username"
+          control={controlLogin}
+          label={textContent.loginForm.username}
+          id="login-input"
+          errors={errorsLogin.username}
+        />
+        <TextFieldCustom
+          name="password"
+          control={controlLogin}
+          label={textContent.loginForm.password}
+          id="password-input"
+          errors={errorsLogin.password}
+          type="password"
+        />
+        <p className="forgotten--password-link" onClick={forgotPassword}>
+          {textContent.loginForm.forgottenPassword}
+        </p>
+        <Button variant="contained" type="submit">
+          {textContent.loginForm.buttonLogin}
+        </Button>
+      </form>
+    </>
   );
 }

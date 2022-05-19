@@ -58,7 +58,7 @@ const Header = () => {
                         <ul>
                             <li><p onClick={handleModal}>x</p></li>
                             <li><NavLink to="/profile">{textContent.profile}</NavLink></li>
-                            <li><p onClick={signOut}>{textContent.logout}</p></li>
+                            <li><p onClick={handleSignOut}>{textContent.logout}</p></li>
                         </ul>
                     </div>}
             </nav>
