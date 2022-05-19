@@ -9,6 +9,7 @@ import { UserContext } from '../../App';
 import { uploadFile } from 'react-s3';
 import {config} from "../config/config-s3"
 import axios from 'axios'
+import { Auth } from "aws-amplify";
 
 window.Buffer = window.Buffer || require("buffer").Buffer; 
 
@@ -49,6 +50,7 @@ export default function PlaceForm() {
   const [file, setFile] = useState(null)
   const [previewImg,setPreviewImg] = useState(null)
   const [urlS3,setUrlS3] = useState('')
+  
 
   
   const {
@@ -63,14 +65,16 @@ export default function PlaceForm() {
       uploadFile(file, config)
         .then(data => setUrlS3(data.location))
         .catch(err => console.error(err))
+      const userdata = await Auth.currentSession()
+      const token = userdata.getAccessToken()
     await 
-      axios.post('http://localhost:3003/api/places/createPlace',{
+      axios.post('http://localhost:3003/api/secured/places/createPlace',{
         name:data_form.name,
         price : data_form.price,
         location : data_form.location,
         path_image: urlS3,
         id_user:user.sub
-    })  
+    },{ headers : {"Authorization" : `${token.jwtToken}`}})  
 
   };
 
@@ -83,21 +87,23 @@ export default function PlaceForm() {
 
 
 
-  return <><form onSubmit={handleSubmit(onSubmit)}>
+  return <><form className="place--form" onSubmit={handleSubmit(onSubmit)}>
+     {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found'/> : null}
+     <FileCustom
+      setFile={setFile}
+    /> 
     <TextFieldCustom name="name"
       control={controlPlace}
       label={textContent.placeForm.name}
       id="place-input"
       errors={errorsPlace.name} />
-    {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found'/> : null}
-    <FileCustom
-      setFile={setFile}
-    />
     <TextFieldCustom name="price"
     control={controlPlace}
     label={textContent.placeForm.price}
     id="place-price"
-    errors={errorsPlace.price}/>
+    errors={errorsPlace.price}
+    adornment={'$'}
+    position={'start'}/>
     <TextFieldCustom name="location"
     control = {controlPlace}
     label={textContent.placeForm.location}

@@ -6,6 +6,7 @@ import Share from '../../assets/scss/images/share.png'
 import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
 import "./index.scss"
+import PlaceForm from '../Forms/PlaceForm';
 
 
 
@@ -51,8 +52,8 @@ export default function Landpage(){
                 <h2>{e.perkTitle}</h2>
                 <p>{e.perkDescription}</p>
             </div>)}
-   
-           
+            
+           <PlaceForm/>
     </div>
      
     </>
