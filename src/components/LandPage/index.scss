@@ -2,11 +2,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    h1{
-        padding: 30px 20px
-    }
+    background-color: rgba(0, 255, 255, 0.118);
+    height: 100vh;
+    z-index: 1;
 }
-.perks{
+
+.landpage--main-img{
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.landpage--main-body{
+    position: absolute;
+    background-color: $backgroundColorTransparency;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+
+/* .perks{
     padding-top: 20px;
     display: flex;
     flex-direction: column;
@@ -26,4 +42,4 @@
     .single-perk > img,p,h2 {
         margin: 5px;
     }
-}
+} */
