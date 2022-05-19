@@ -1,12 +1,12 @@
-import React,{ useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate , NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TextFieldCustom from "./SubComponents/TextFieldCustom";
 import { Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { UserContext } from '../../App';
 import { Auth } from 'aws-amplify';
+import '@aws-amplify/ui-react/styles.css';
 
 //Temporary mocked data
 const textContent = {
@@ -15,7 +15,6 @@ const textContent = {
     password: "Contraseña",
     forgottenPassword: "He olvidado la contraseña",
     buttonLogin: "Login",
-    noaccount: "No tengo cuenta"
   },
   validations: {
     validEmail: "Introduce un email valido",
@@ -37,11 +36,12 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
-  const [user, setUser] = useContext(UserContext);
+
   const navigate = useNavigate();
 
 
   const {
+    
     control: controlLogin,
     handleSubmit,
     formState: { errors: errorsLogin },
@@ -51,9 +51,8 @@ export default function LoginForm() {
 
   async function signIn(data) {//si la contraseña es erronea devuelve un 400
     try {
-      const response = await Auth.signIn(data.username, data.password);
-      setUser({...response.attributes}) //setting UserContext with user data
-      navigate(`/profile`)   //rendering ProfileInfo page
+      await Auth.signIn(data.username, data.password);
+      navigate(`/profile`)   
     } catch (error) {
         console.log(error);
     }
@@ -63,6 +62,9 @@ export default function LoginForm() {
     signIn(data);
   };
 
+  const forgotPassword = (data) => {
+    navigate('/forgottenpassword')
+  };
   return (<>
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldCustom
@@ -80,11 +82,10 @@ export default function LoginForm() {
         errors={errorsLogin.password}
         type="password"
       />
-      <NavLink className='aux-links' to ={`/forgottenpassword`}>{textContent.loginForm.forgottenPassword}</NavLink>
+      <p className="forgotten--password-link" onClick={forgotPassword}>{textContent.loginForm.forgottenPassword}</p>
       <Button variant="contained" type="submit">
         {textContent.loginForm.buttonLogin}
       </Button>
-      <NavLink className='aux-links' to ={`/register`}>{textContent.loginForm.noaccount}</NavLink>
     </form>
   </>
   );
