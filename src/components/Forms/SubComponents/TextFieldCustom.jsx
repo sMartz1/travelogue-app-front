@@ -8,7 +8,7 @@ export default function TextFieldCustom({name,control,label,id,errors,type,adorn
     <Controller
         name={name}
         control={control}
-        defaultValue=""
+        /* defaultValue="" */
         render={({ field }) => (
           <TextField
             {...field}

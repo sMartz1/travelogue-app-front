@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
       await Auth.currentSession();
       const userdata = await Auth.currentUserInfo();
       setUser(userdata.attributes);
+      console.log(userdata.atributes);
       setLoading(false);
       //checks there's a valid user logged and redirect to landing page in case we logout on this page.
     } catch (error) {

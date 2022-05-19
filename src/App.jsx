@@ -11,6 +11,8 @@ import Header from "./components/Header"
 import Landpage from "./components/LandPage";
 import Discover from "./components/Discover"
 import ItinerariesForm from "./components/Forms/ItinerariesForm";
+import ModifyItinerary from "./components/Forms/ModifyItinerary";
+import { Auth } from 'aws-amplify';
 import Itinerary from "./components/Itinerary";
 import PlaceView from "./components/PlaceView";
 import { CreatePlaceView } from "./components/createPlaceView";
@@ -20,6 +22,7 @@ import { AuthProvider,useAuth } from "./components/Context/userContext";
 export const UserContext = createContext(null);
 
 function App() {
+
 
   const {user,loading} = useAuth();
   console.log('user',user);
@@ -37,6 +40,7 @@ function App() {
             <Route path="/changepassword" element={<ChangePassword />} />
             <Route path="/lists" element={<ListItems />} />
             <Route path="/createitinerary" element={<ItinerariesForm />} />
+            <Route path="/modifyitinerary/:id" element={<ModifyItinerary />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/itinerary" element={<Itinerary />} />
             <Route path="/place/:id" element={<PlaceView />} />

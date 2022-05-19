@@ -12,7 +12,6 @@ export default function SelectCustom({name,control,label,id,children}) {
         <Controller
           name={name}
           control={control}
-          /* defaultValue={"es"} */
           defaultValue={""}
           render={({ field }) => (
             <Select {...field} label={label}>
