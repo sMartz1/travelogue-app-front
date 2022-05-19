@@ -41,7 +41,7 @@ export default function Landpage(){
         iscurrentSession();
     }, [])
 
-    return <><section> 
+    return <><section className='landpage--main'> 
         <h1>{textContent.title.slogan}</h1>
         <img width='300px' height='300px' src={textContent.title.imageUrl} alt=''/>
     </section>
