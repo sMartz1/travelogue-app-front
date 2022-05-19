@@ -28,7 +28,7 @@ const imageSize = '50px'
 export default function Landpage(){
     const {user} = useAuth();
 
-    return <><section> 
+    return <><section className='landpage--main'> 
         <h1>{textContent.title.slogan}</h1>
         <img width='300px' height='300px' src={textContent.title.imageUrl} alt=''/>
     </section>

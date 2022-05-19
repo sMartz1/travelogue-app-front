@@ -8,20 +8,20 @@ import FileCustom from "./SubComponents/FileCustom"
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from '../../App';
 import { uploadFile } from 'react-s3';
-import {config} from "../config/config-s3"
+import { config } from "../config/config-s3"
 import axios from 'axios'
 import { Auth } from "aws-amplify";
 import Map from '../Map'
 import { useAuth } from "../Context/userContext";
 
-window.Buffer = window.Buffer || require("buffer").Buffer; 
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 /* A constant that contains the text that will be displayed in the form. */
 const textContent = {
   placeForm: {
     name: "Name of the place",
-    price:"Estimated Price",
-    location:"location",
+    price: "Estimated Price",
+    location: "location",
     buttonPlace: "Create Place",
   },
   validations: {
@@ -54,7 +54,6 @@ export default function PlaceForm() {
   const [marker, setMarker] = useState(null)
   
 
-  
   const {
     control: controlPlace,
     handleSubmit,
@@ -75,7 +74,7 @@ export default function PlaceForm() {
   }, []);
 
   const onSubmit = async (data_form) => {
-    await 
+    await
       uploadFile(file, config)
         .then(data => setUrlS3(data.location))
         .catch(err => console.error(err))
@@ -92,20 +91,20 @@ export default function PlaceForm() {
     console.log('submit',t);
   };
 
-  useEffect(()=> {
-    if(file){
+  useEffect(() => {
+    if (file) {
       const img = URL.createObjectURL(file)
       setPreviewImg(img)
     }
-  },[file])
+  }, [file])
 
 
   console.log('user',user);
   return <><form className="place--form" onSubmit={handleSubmit(onSubmit)}>
-     {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found'/> : null}
-     <FileCustom
+    {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found' /> : null}
+    <FileCustom
       setFile={setFile}
-    /> 
+    />
     <TextFieldCustom name="name"
       control={controlPlace}
       label={textContent.placeForm.name}
