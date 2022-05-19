@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { createContext , useState } from 'react'
+import { createContext , useState,useEffect, useContext } from 'react'
 import Login from "./components/Login"
 import Register from "./components/Register";
 import ProfileInfo from "./components/ProfileInfo"
@@ -13,14 +13,17 @@ import ItinerariesForm from "./components/Forms/ItinerariesForm";
 import Itinerary from "./components/Itinerary";
 import PlaceView from "./components/PlaceView";
 import { CreatePlaceView } from "./components/createPlaceView";
+import { AuthProvider,useAuth } from "./components/Context/userContext";
 
 
 export const UserContext = createContext(null);
 
 function App() {
-  const [ user , setUser ] = useState({})
-  return (<>
-    <UserContext.Provider value={[user,setUser]}>
+
+  const {user,loading} = useAuth();
+  console.log('user',user);
+  if(!loading){return (<>
+    
       <main className="main-container">
         <BrowserRouter>
           <Header />
@@ -41,9 +44,11 @@ function App() {
         </BrowserRouter>
       </main> 
       <Footer /> 
-    </UserContext.Provider>
     </>
   );
+  }else{
+    return <h1>Loading</h1>
+  }
 }
 
 export default App;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import mapboxgl from "mapbox-gl";
 
-export default function SearchBar({ map }) {
+export default function SearchBar({ map,setMarker }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
@@ -21,15 +21,16 @@ export default function SearchBar({ map }) {
   const handleOnChangeSearch = async (e) => {
     setSearch(e.target.value);
     const data = await axios.get(getUrl(e.target.value));
-
     setResults(data.data.features);
+    setMarker(data.data.features[0]);
   };
 
     const dragEnd = async (e)=>{
       console.log(e);
       const data = await axios.get(getAddress(e.target._lngLat))
       setSearch(data.data.features[0].place_name)
-      console.log(data.data.features);
+      setMarker(data.data.features[0]);
+      
       
     }
 
@@ -60,7 +61,6 @@ export default function SearchBar({ map }) {
             key={element.id}
             onClick={() => {
               changeMap(element);
-              setSearch("");
               setResults([]);
             }}
           >

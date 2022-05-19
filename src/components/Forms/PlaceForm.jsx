@@ -1,5 +1,6 @@
 import TextFieldCustom from "./SubComponents/TextFieldCustom";
 import { Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -10,6 +11,8 @@ import { uploadFile } from 'react-s3';
 import {config} from "../config/config-s3"
 import axios from 'axios'
 import { Auth } from "aws-amplify";
+import Map from '../Map'
+import { useAuth } from "../Context/userContext";
 
 window.Buffer = window.Buffer || require("buffer").Buffer; 
 
@@ -35,10 +38,7 @@ const schema = yup.object().shape({
     .min(5, textContent.validations.minChar(5, textContent.placeForm.name))
     .required(),
   price:yup
-    .number(),
-  location : yup
-    .string()
-    .required('location is required')
+    .number()
     
 
 });
@@ -46,10 +46,12 @@ const schema = yup.object().shape({
 const imgSize = "50px"
 
 export default function PlaceForm() { 
-  const [user, setUser] = useContext(UserContext);
+  const { user } = useAuth();
   const [file, setFile] = useState(null)
   const [previewImg,setPreviewImg] = useState(null)
-  const [urlS3,setUrlS3] = useState('')
+  const [urlS3,setUrlS3] = useState('');
+  const navigate = useNavigate();
+  const [marker, setMarker] = useState(null)
   
 
   
@@ -60,6 +62,18 @@ export default function PlaceForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  async function iscurrentSession() {
+    try {
+      await Auth.currentSession();
+    //checks there's a valid user logged and redirect to landing page in case we logout on this page.
+    } catch (error) {
+        navigate(`/login`)
+    }
+  }
+  useEffect(() => {
+    iscurrentSession();
+  }, []);
+
   const onSubmit = async (data_form) => {
     await 
       uploadFile(file, config)
@@ -67,15 +81,15 @@ export default function PlaceForm() {
         .catch(err => console.error(err))
       const userdata = await Auth.currentSession()
       const token = userdata.getAccessToken()
-    await 
+    const t = await 
       axios.post('http://localhost:3003/api/secured/places/createPlace',{
         name:data_form.name,
         price : data_form.price,
-        location : data_form.location,
+        location : `${marker.geometry.coordinates[0]},${marker.geometry.coordinates[1]}`,
         path_image: urlS3,
         id_user:user.sub
     },{ headers : {"Authorization" : `${token.jwtToken}`}})  
-
+    console.log('submit',t);
   };
 
   useEffect(()=> {
@@ -86,7 +100,7 @@ export default function PlaceForm() {
   },[file])
 
 
-
+  console.log('user',user);
   return <><form className="place--form" onSubmit={handleSubmit(onSubmit)}>
      {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found'/> : null}
      <FileCustom
@@ -104,11 +118,14 @@ export default function PlaceForm() {
     errors={errorsPlace.price}
     adornment={'$'}
     position={'start'}/>
-    <TextFieldCustom name="location"
+    <div className="map-container-create-place">
+    <Map setMarker={setMarker}/>
+    </div>
+    {/* <TextFieldCustom name="location"
     control = {controlPlace}
     label={textContent.placeForm.location}
     id="place-location"
-    errors={errorsPlace.location}/>
+    errors={errorsPlace.location}/> */}
     <Button variant="contained" type="submit">
       {textContent.placeForm.buttonPlace}
     </Button>

@@ -1,7 +1,7 @@
 import { useContext , useState } from 'react';
 import { UserContext } from '../../App';
 import { Link , NavLink , useNavigate} from "react-router-dom";
-import { Auth } from 'aws-amplify';
+import { useAuth } from '../Context/userContext';
 
 /* const textContent = {
     navLink: {
@@ -20,19 +20,14 @@ const textContent = {
   
 
 const Header = () => {
-    const [user, setUser] = useContext(UserContext);
+    const {user,signOut} = useAuth();
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
-    async function signOut() {
-        try {
-            await Auth.signOut();
-            setUser({})
-            handleModal()
-            navigate('/')
-             
-        } catch (error) {
-            console.log('error signing out: ', error);
-        }
+    
+    const handleSignOut = ()=>{
+        signOut();
+        handleModal();
+        navigate('/')
     }
     const handleModal = ()=> {
         setModal(!modal)
@@ -46,7 +41,7 @@ const Header = () => {
                 <ul>
                     {textContent.navLink.map((element, index) => {
                         return <li className="header--link" key={index}>
-                                    {index == 2 && user.email ? <div><p onClick={handleModal} className="header--link">
+                                    {index == 2 && user?.email ? <div><p onClick={handleModal} className="header--link">
                                         {user.name}
                                     </p> </div>: 
                                     <NavLink to={element.link} className="header--link">

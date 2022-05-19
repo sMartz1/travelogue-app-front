@@ -2,6 +2,7 @@ import React , { useContext } from "react";
 import { Button } from "@mui/material";
 import Lists from "./Lists"
 import { UserContext } from '../../App';
+import { useAuth } from "../Context/userContext";
 
 
 
@@ -22,7 +23,7 @@ const textContent = {
   button:"back"
 };
 export default function ListItems() {
-  const [user, setUser] = useContext(UserContext);
+  const {user} = useAuth();
 
  
   return (

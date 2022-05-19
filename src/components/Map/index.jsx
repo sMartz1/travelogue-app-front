@@ -6,7 +6,7 @@ import SearchBar from "./subcomponents/SearchBar";
 import Marker from "./subcomponents/Marker"
 mapboxgl.accessToken = process.env.REACT_APP_MAP_TOKEN;
 
-export default function Map({features,changePlace,search = true}) {
+export default function Map({features,changePlace,search = true,setMarker}) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [isSearchBox, setIsSearchBox] = useState(search);
@@ -80,7 +80,7 @@ export default function Map({features,changePlace,search = true}) {
 
   return (
     <div ref={mapContainer} className="map-container">
-      {isSearchBox?<SearchBar map={map} />:""}
+      {isSearchBox?<SearchBar map={map} setMarker={setMarker} />:""}
     </div>
   );
 }
