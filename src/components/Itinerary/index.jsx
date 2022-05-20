@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import "./styles.scss";
 import getItineraryById from "../../helpers/getItineraryById";
 import getItineraryPlaces from "../../helpers/getItineraryPlaces";
-import WarningIcon from "@mui/icons-material/Warning"
+import WarningIcon from "@mui/icons-material/Warning";
 import getPlaceById from "../../helpers/getPlaceById";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import StepContent from "@mui/material/StepContent";
-import Brightness1OutlinedIcon from '@mui/icons-material/Brightness1Outlined';
+import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 
 export default function Itinerary() {
   const { id } = useParams();
@@ -71,8 +71,6 @@ export default function Itinerary() {
                     onClick={() => {
                       handleClickStepper(i);
                     }}
-                  
-                    
                   >
                     {step.name}
                   </StepLabel>

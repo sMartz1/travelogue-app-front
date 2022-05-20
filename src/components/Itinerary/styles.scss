@@ -3,10 +3,25 @@
   padding-bottom: 7rem;
 }
 .itinerary-header {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 500;
-  padding: 0.5rem;
+  padding: 1rem;
   text-align: center;
+  &::before{
+    position:absolute;
+    height: 1.4rem;
+    width: 80%;
+    margin-top: 3rem;
+    border-radius: 2rem;
+    left: 0;
+    content: "";
+    background-color: #1a3c401d;
+  }
+}
+
+.itinerary-description{
+  text-align: center;
+  padding-bottom: 2rem;
 }
 .itinerary-map {
   display: flex;
