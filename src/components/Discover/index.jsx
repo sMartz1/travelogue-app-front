@@ -1,6 +1,6 @@
 import { Carrousel } from "../Carrousel"
 import { useState, useEffect } from 'react'
-import { callToApi } from "./helper"
+import { getRandoms } from "../../helpers/getRandoms"
 
 const Discover = () => {
     let i = 0
@@ -12,7 +12,7 @@ const Discover = () => {
     }, [])
 
     const call = async () => {
-        const response = await callToApi();
+        const response = await getRandoms();
         setPlaces(response[0])
         setItineraries(response[1])
         console.log(response)
