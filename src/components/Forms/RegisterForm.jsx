@@ -125,16 +125,18 @@ export default function RegisterForm() {
   return (
     <>
       {confirmView ?
-        <div >
-          <input
-            type="text"
-            placeholder={textContent.registerForm.confirmationCode}
-            ref={confirmationCode}
-            id="confirmationcode-input-register-form"
-          />
-          <Button variant="contained" type="button" onClick={confirmSignUp}>
-            {textContent.registerForm.buttonConfirm}
-          </Button>
+        <div className='form--main' >
+          <div className="form--confirmation">
+            <input
+              type="text"
+              placeholder={textContent.registerForm.confirmationCode}
+              ref={confirmationCode}
+              id="confirmationcode-input-register-form"
+            />
+            <Button variant="contained" type="button" onClick={confirmSignUp}>
+              {textContent.registerForm.buttonConfirm}
+            </Button>
+          </div>
         </div> : <form className='form--main' onSubmit={handleSubmit(onSubmit)}>
           <TextFieldCustom
             name="firstName"

@@ -8,11 +8,10 @@ import {
 export default function SelectCustom({ name, control, label, id, children }) {
   return (
     <FormControl
-      classname="form--input-select" >
+      sx={{ width: '100%' }} >
       <InputLabel id={id}>{label}</InputLabel>
       <Controller
         name={name}
-        classname="form--input-select"
         control={control}
         /* defaultValue={"es"} */
         defaultValue={""}
