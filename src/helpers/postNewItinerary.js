@@ -5,7 +5,7 @@ const postNewItinerary = async (body) => {
   const userdata = await Auth.currentSession();
   const token = userdata.getAccessToken();
   try {
-    const response = await axios.post(`${process.env.REACT_APP_HOST_DB}api/secured/itineraries/newitinerary`, body,
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}secured/itineraries/newitinerary`, body,
     { headers: {"Authorization" : `${token.jwtToken}`} });
     return response.data
   }
