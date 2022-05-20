@@ -30,12 +30,13 @@ export default function Lists(elements) {
 
   useEffect(() => {
   }, [])
+
+
   return (
     <div className="list--container">
       <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={() => navigate(`${elements.path}`)}><AddCircleRounded className="list--icon-add" /></div></div>
       <section className="profileinfo--list">
         {elements.elements.map((element, index) => {
-          console.log(element)
           return (
             <div className="list--row" key={index}>
               <img className="list--img-cover" src={element.image_path} />
