@@ -5,7 +5,7 @@ const modifyItinerary = async (body) => {
   const userdata = await Auth.currentSession();
   const token = userdata.getAccessToken();
   try {
-    const response = await axios.put(`${process.env.REACT_APP_HOST_DB}api/secured/itineraries/modifyitinerary`, body,
+    const response = await axios.put(`${process.env.REACT_APP_API_URL}secured/itineraries/modifyitinerary`, body,
     { headers: {"Authorization" : `${token.jwtToken}`} });
   return response.data
   }

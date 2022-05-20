@@ -8,8 +8,8 @@ export default function PlaceView(){
     const [place,setPlace] = useState(null)
 
     const getPlace = async () => {
-        const {data} = await axios.get(`http://localhost:3003/api/places/singlePlace/${id}`)
-        console.log(data)
+
+        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}places/singlePlace/${id}`)
         setPlace(data)
     }
 
