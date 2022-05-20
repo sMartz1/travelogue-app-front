@@ -83,7 +83,7 @@ const Header = () => {
   return (
     <header className={textColorClass}>
       <div className="header--title" onClick={() => navigate("/")}>
-        <h1 onClick={signOut}>{textContent.title}</h1>
+        <h1>{textContent.title}</h1>
       </div>
       <div className="header--menu">
         <div
