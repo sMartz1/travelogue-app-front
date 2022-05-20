@@ -1,13 +1,13 @@
-import facebookLogo from '../../assets/scss/images/facebook.png'
-import InstagramLogo from '../../assets/scss/images/instagram.png'
-import TwitterLogo from '../../assets/scss/images/twitter.png'
-import "./index.scss";
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import PublicIcon from '@mui/icons-material/Public';
 
 const textContent = {
-    SocialMedia : [
-        {link:'Facebook',urlImage:facebookLogo,name:'Facebook'},
-        {link:'instagram', urlImage:InstagramLogo,name:'Instagram'},
-        {link:'twiter',urlImage:TwitterLogo,name:'Twitter'}
+    SocialMedia: [
+        { link: 'Facebook', icon: FacebookRoundedIcon, name: 'Facebook' },
+        { link: 'instagram', icon: InstagramIcon, name: 'Instagram' },
+        { link: 'twiter', icon: TwitterIcon, name: 'Twitter' }
     ],
     /* Policy : [
         {name:'Terms of use',link:'tata'},
@@ -16,29 +16,38 @@ const textContent = {
 
     ], */
     CompanyName: {
-        logo:'tarara',
-        name:'Travelogue'
+        logo: PublicIcon,
+        name: 'Travelogue'
     },
-    TimeOfCreation : '© 2022 Travelogue Company '        
+    TimeOfCreation: '© 2022 Travelogue Company '
 }
 
 const imageSize = '35px'
 
 export default function Footer() {
 
-    return <footer>
-        <div className="socialMedia">
-            {textContent.SocialMedia.map((e,i)=><img width={imageSize} height={imageSize} key={i} alt={e.name} src={e.urlImage}/>)}
+    return <footer className='footer--main'>
+        <div className="footer--body-superior">
+            {textContent.SocialMedia.map((e, i) => {
+                return (
+                    <div className='footer--social-container'>
+                        <e.icon />
+                        <a href={e.link}
+                            className="footer--link"
+                            target="_blank"
+                            rel="noopener noreferrer">{e.name}</a>
+                    </div>
+                )
+            })}
         </div>
-        {/* <div className="policies">
-            {textContent.Policy.map((e,i)=> <h3 key={i}>{e.name}</h3>)}
-        </div> */}
-        <div className="CompanyName">
-            <img src={textContent.CompanyName.logo} alt='Logo'/>
-            <h3>{textContent.CompanyName.name}</h3>
-        </div>
-        <div className="timeOfCreation">
-            {textContent.TimeOfCreation}
+        <div className='footer--body-inferior'>
+            <div className="footer--container-bottom">
+                <textContent.CompanyName.logo />
+                <p className='footer--text'>{textContent.CompanyName.name}</p>
+            </div>
+            <div className="footer--container-bottom">
+                <p className="footer-text">{textContent.TimeOfCreation}</p>
+            </div>
         </div>
     </footer>
 

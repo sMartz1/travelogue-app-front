@@ -184,7 +184,9 @@ export default function ModifyItinerary() {
 
         >
           {arrayPlaces.map((e,index) => (
+
             <MenuItem key={`${e.id}start${index}`} value={e.name}>
+
               {e.name}
             </MenuItem>
           ))}

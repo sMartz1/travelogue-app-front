@@ -6,7 +6,6 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/scss/scrollbar';
 import 'swiper/scss/grid';
-import "./index.scss";
 
 const itineraries = [
     { urlImage: 'https://img1.10bestmedia.com/Images/Photos/378847/GettyImages-1085317916_54_990x660.jpg', title: 'Barcelona' }, { urlImage: 'https://a.cdn-hotels.com/gdcs/production133/d1207/7ad2d7f0-68ce-11e8-8a0f-0242ac11000c.jpg', title: 'Madrid' },
@@ -25,7 +24,7 @@ export function Carrousel(props) {
             spaceBetween={10}
             slidesPerGroup={5}
             breakpoints={{
-                250: {
+                150: {
                     slidesPerView: 2,
                     spaceBetween: 20
                 },
@@ -49,7 +48,7 @@ export function Carrousel(props) {
             }}
             modules={[Pagination]}
         >
-            {objects.map((e, i) => <SwiperSlide className="swiper-slider" key={i}><img className="carrousel--img-slider" src={e.image_path} alt='event' /><h3>{e.name}</h3></SwiperSlide>)}
+            {objects.map((e, i) => <SwiperSlide className="swiper-slider" key={i}><div className="carrousel--frame-image"><img className="carrousel--img-slider" src={e.image_path} alt='event' /><div className="carrousel--container-text"><h3 className="carrousel--name-item">{e.name}</h3></div></div></SwiperSlide>)}
         </Swiper></>
 
 }
