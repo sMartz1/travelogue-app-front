@@ -1,0 +1,36 @@
+.form--main{
+    width: 50%;
+    padding-top: 50px;
+    min-height: 80.1vh;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+
+    @media (max-width:1024px) {
+        padding-top: 150px;
+        width: 90%;
+    }
+}
+
+.form--input-text{
+    width: 100%;
+}
+
+.form--input-select{
+    width: 100% !important;
+}
+
+.form--button-submit{
+    width: 100%;
+    height: 50px;
+    background-color: $backgroundColor !important;
+    font-size: 30px !important;
+}
+
+.form--button-submit:hover{
+    box-shadow: 0 0 10px $backgroundColor !important;
+    text-shadow: 0 0 5px $fontColor !important;
+}
