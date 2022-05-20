@@ -50,7 +50,7 @@ export default function LoginForm() {
 
   const onSubmit = async (data) => {
     const sign = await signIn(data);
-    if(sign)navigate('/');
+    if (sign) navigate('/');
   };
 
   const forgotPassword = (data) => {
@@ -58,9 +58,10 @@ export default function LoginForm() {
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="form--main" onSubmit={handleSubmit(onSubmit)}>
         <TextFieldCustom
           name="username"
+          className="form--input-text"
           control={controlLogin}
           label={textContent.loginForm.username}
           id="login-input"
@@ -68,6 +69,7 @@ export default function LoginForm() {
         />
         <TextFieldCustom
           name="password"
+          className="form--input-text"
           control={controlLogin}
           label={textContent.loginForm.password}
           id="password-input"
@@ -77,7 +79,7 @@ export default function LoginForm() {
         <p className="forgotten--password-link" onClick={forgotPassword}>
           {textContent.loginForm.forgottenPassword}
         </p>
-        <Button variant="contained" type="submit">
+        <Button className="form--button-submit" variant="contained" type="submit">
           {textContent.loginForm.buttonLogin}
         </Button>
       </form>

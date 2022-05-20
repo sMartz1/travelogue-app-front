@@ -28,9 +28,9 @@ export default function Landpage() {
             <div className="carousel-landpage"> Carousel1</div>
           </article>
           <article className="popular-places carrousel-container">
-          <div className="title-landpage-carousel">Popular Places</div>
+            <div className="title-landpage-carousel">Popular Places</div>
             <div className="carousel-landpage"> Carousel2</div>
-           
+
           </article>
         </section>
       </main>

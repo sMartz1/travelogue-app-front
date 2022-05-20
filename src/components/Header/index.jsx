@@ -34,19 +34,18 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-     setIsBlack(blackHeaderPaths.includes(location.pathname));
+    setIsBlack(blackHeaderPaths.includes(location.pathname));
   }, [location]);
 
   useEffect(() => {
     setIsUser(user && Object.keys(user).length > 0 ? true : false);
-    
+
   }, [user]);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
   const handleSignOut = () => {
@@ -99,7 +98,7 @@ const Header = () => {
         </Alert>
       </Snackbar>
     </header>
-   
+
   );
 };
 

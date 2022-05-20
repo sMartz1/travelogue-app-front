@@ -2,7 +2,8 @@ import React, { useContext , useEffect , useState } from "react";
 import {
   SettingsRounded,
   AddCircleRounded,
-  DeleteRounded
+  DeleteRounded,
+  NavigationSharp
 } from "@mui/icons-material";
 import { useNavigate } from 'react-router-dom';
 import deleteItinerary from '../../../helpers/deleteItinerary';
@@ -14,8 +15,8 @@ import './styles.scss'
 export default function Lists(elements) {
     const navigate = useNavigate();
     const[arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries] = useContext(UserItinerariesContext);
-    const viewItem = ()=> {
-      console.log('peticion')
+    const viewItem = (id)=> {
+      elements.title === 'Itineraries'? navigate(`/itinerary/${id}`) : navigate(`/place/${id}`)
     }
     
     const modifyItem = (i)=> {
@@ -35,7 +36,7 @@ export default function Lists(elements) {
       <div className="list--container">
         <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={()=> navigate(`${elements.path}`)}><AddCircleRounded/></div></div>  
         <ul className="profileinfo--list">
-          {elements.elements.map((element, index)=> <li key={index}><div className="list--button" onClick={viewItem}>{element.name}</div>
+          {elements.elements.map((element, index)=> <li key={index}><div className="list--button" onClick={()=>viewItem(element.id)}>{element.name}</div>
           <div className="list--button" onClick={()=>modifyItem(index)}><SettingsRounded/></div>
           <div className="list--button" onClick={()=>deleteItem(element.id)}><DeleteRounded/></div></li> )}
         </ul>
