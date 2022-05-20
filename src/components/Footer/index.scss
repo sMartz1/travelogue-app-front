@@ -6,6 +6,7 @@
     background-color: $backgroundColor;
     color: $fontColor;
     box-shadow: 0 0 10px inset $primaryColor;
+    padding-bottom: 10px;
 }
 
 .footer--body-superior, .footer--body-inferior{
@@ -27,7 +28,6 @@
 
 .footer--body-inferior{
     flex-direction: column;
-    padding-top: 4px;
 }
 
 .footer--social-container{
