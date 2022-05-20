@@ -1,6 +1,6 @@
-import { useContext , useState } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../App';
-import { Link , NavLink , useNavigate} from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from '../Context/userContext';
 
 /* const textContent = {
@@ -12,27 +12,27 @@ import { useAuth } from '../Context/userContext';
     title: "Travelogue App",
   }; */
 const textContent = {
-    navLink:  [{title:"Home", link:"/"},{title:"Discover", link:"/register"},{title:"Login", link:"/login"}],
-    title: "Travelogue App",
-    profile:"Profile",
-    logout:"Logout"
-    };
-  
+    navLink: [{ title: "Discover", link: "/discover" }, { title: "Login", link: "/login" }],
+    title: "Travelogue",
+    profile: "Profile",
+    logout: "Logout"
+};
+
 
 const Header = () => {
-    const {user,signOut} = useAuth();
+    const { user, signOut } = useAuth();
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
-    
-    const handleSignOut = ()=>{
+
+    const handleSignOut = () => {
         signOut();
         handleModal();
         navigate('/')
     }
-    const handleModal = ()=> {
+    const handleModal = () => {
         setModal(!modal)
     }
-    return(
+    return (
         <header className="header--main">
             <div className="header--title">
                 <h1 onClick={signOut}>{textContent.title}</h1>
@@ -41,19 +41,19 @@ const Header = () => {
                 <ul>
                     {textContent.navLink.map((element, index) => {
                         return <li className="header--link" key={index}>
-                                    {index == 2 && user?.email ? <div><p onClick={handleModal} className="header--link">
-                                        {user.name}
-                                    </p> </div>: 
-                                    <NavLink to={element.link} className="header--link">
-                                        {element.title}
-                                    </NavLink>}
-                                    {/* <NavLink to={element.link} className="header--link">
+                            {index == 2 && user?.email ? <div><p onClick={handleModal} className="header--link">
+                                {user.name}
+                            </p> </div> :
+                                <NavLink to={element.link} className="header--link">
+                                    {element.title}
+                                </NavLink>}
+                            {/* <NavLink to={element.link} className="header--link">
                                         {index == 2 && user.email ? user.name : element.title}
                                     </NavLink> */}
-                                </li>
+                        </li>
                     })}
                 </ul>
-                {modal && 
+                {modal &&
                     <div className="header--modal">
                         <ul>
                             <li><p onClick={handleModal}>x</p></li>

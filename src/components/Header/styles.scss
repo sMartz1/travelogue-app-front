@@ -1,36 +1,44 @@
 .header--main{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding: 5% 5%;
-    gap: 10px;
-    border-bottom: 1px solid black;
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    color: $fontColor;
+
+    h1{
+        font-weight: 100;
+        margin-left: 8px;
+        text-shadow: 0 0 4px $fontColor;
+    }
 
     @media (min-width:1024px) {
         padding: 1% 5%;
-        flex-direction: row;
-        align-items: center;
         height: 60px;
     }
 }
 
 .header--navlinks{
     border-radius: 5px;
-    box-shadow: 1px 1px 3px grey, 3px 3px 3px inset white;
     width: 100%;
     height: 30px;
+    color: $fontColor;
+    position: absolute;
+    right: 5%;
 
     ul{
         list-style: none;
         display: flex;
-        flex-direction: row;
+        align-items: flex-start;
+        flex-direction: column;
         justify-content: space-around;
         font-size: 20px;
         width: 100%;
     }
     li{
-        margin:0;
+        width: 10%;
         display: flex;
     }
 
@@ -43,6 +51,11 @@
             flex-direction: row;
         }
     }
+
+    @media (max-width:1024px) {
+        top: 90%;
+        left: 1%;
+    }
 }
 
 .header--link{
@@ -51,12 +64,22 @@
     margin: 5px;
     padding: 0;
     text-decoration: none;
+    color: $fontColor;
+    text-shadow: 0 0 1px $fontColor;
+    transition-duration: 0.1s;
+
     &:hover{
-        font-weight: bolder;
+        font-weight: 400;
+        text-shadow: 0 0 10px $fontColor;
     }
 }
 .header--modal ul{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+.header--title{
+    width: 100%;
+    font-size: 20px;
 }
