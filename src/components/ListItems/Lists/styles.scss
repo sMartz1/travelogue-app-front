@@ -1,44 +1,99 @@
 .list--main--container {
-    height:min-content;
-    margin: auto;
-    height: min-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.list--title{
     display: grid;
-    grid-template-columns: 5fr 1fr;
-}
-.list--button{
-    cursor: pointer;
+    grid-template-columns: 1fr 1fr;
 }
 
 .list--container{
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px grey, 3px 3px 3px inset white;
-    width: 80%;
-    height: fit-content;
-    margin: 1rem auto;
-    padding-top: 1rem;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: 1rem;
+    gap: 10px;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    margin-top: 80px;
+}
 
-    ul{
-        list-style: none;
-        justify-content: space-around;
-        font-size: 20px;
-        width: 100%;
-    }
-    li{
-        display: flex;
-        justify-content: center;
-        column-gap: 1rem;
-    }
-    @media (min-width:1024px) {
-        width: 50%;
+.list--row{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 150px;
+    height: 100px;
+    margin-bottom: 10px;
+}
 
+.profileinfo--list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.list--img-cover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.list--name-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-color: $backgroundColor;
+    box-shadow: 0 15px 10px inset $primaryColor;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.list--name{
+    text-shadow: 0 0 2px $fontColor;
+    color: $fontColor;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover{
+        text-shadow: 0 0 5px $fontColor;
     }
+}
+
+.list--buttons{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $backgroundColor;
+    padding: 3px 7px;
+    border-radius: 0px 10px 0px 5px;
+    box-shadow: 0px 0px 10px inset $primaryColor;
+    display: flex;
+    flex-direction: row;
+}
+
+.list--button, .list--icon-add{
+    cursor: pointer;
+    margin-top: 2px;
+    color: $fontColor;
+    text-shadow: 0 0 2px $fontColor;
+
+    &:hover{
+        text-shadow: 0 0 10px $fontColor;
+    }
+}
+
+.list--icon-add{
+    color: $backgroundColor !important;
+}
+
+.list--container-button-submit{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.list--button-submit{
+    width: 100%;
+    background-color: $backgroundColor !important;
 }

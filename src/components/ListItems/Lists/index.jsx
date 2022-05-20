@@ -1,4 +1,4 @@
-import React, { useContext , useEffect , useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   SettingsRounded,
   AddCircleRounded,
@@ -7,38 +7,48 @@ import {
 import { useNavigate } from 'react-router-dom';
 import deleteItinerary from '../../../helpers/deleteItinerary';
 import deletePlace from '../../../helpers/deletePlace';
-import {UserItinerariesContext} from '../../ListItems';
-import './styles.scss'
+import { UserItinerariesContext } from '../../ListItems';
 
 
 export default function Lists(elements) {
-    const navigate = useNavigate();
-    const[arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries] = useContext(UserItinerariesContext);
-    const viewItem = ()=> {
-      console.log('peticion')
-    }
-    
-    const modifyItem = (i)=> {
-      let itineraryToModify = arrayItineraries[i]
-      window.localStorage.setItem('places',JSON.stringify(arrayPlaces));  
-      window.localStorage.setItem('itinerary',JSON.stringify(itineraryToModify));  
-      navigate(`/modifyItinerary/${itineraryToModify.id}`)
-    }
+  const navigate = useNavigate();
+  const [arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries] = useContext(UserItinerariesContext);
+  const viewItem = () => {
+    console.log('peticion')
+  }
 
-    const deleteItem = (id)=> {
-      elements.title==='Itineraries'? deleteItinerary(id): deletePlace(id);
-    }
+  const modifyItem = (i) => {
+    let itineraryToModify = arrayItineraries[i]
+    window.localStorage.setItem('places', JSON.stringify(arrayPlaces));
+    window.localStorage.setItem('itinerary', JSON.stringify(itineraryToModify));
+    navigate(`/modifyItinerary/${itineraryToModify.id}`)
+  }
 
-    useEffect( () => {
-    }, [])
-    return (
-      <div className="list--container">
-        <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={()=> navigate(`${elements.path}`)}><AddCircleRounded/></div></div>  
-        <ul className="profileinfo--list">
-          {elements.elements.map((element, index)=> <li key={index}><div className="list--button" onClick={viewItem}>{element.name}</div>
-          <div className="list--button" onClick={()=>modifyItem(index)}><SettingsRounded/></div>
-          <div className="list--button" onClick={()=>deleteItem(element.id)}><DeleteRounded/></div></li> )}
-        </ul>
-      </div>
-    );
+  const deleteItem = (id) => {
+    elements.title === 'Itineraries' ? deleteItinerary(id) : deletePlace(id);
+  }
+
+  useEffect(() => {
+  }, [])
+  return (
+    <div className="list--container">
+      <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={() => navigate(`${elements.path}`)}><AddCircleRounded className="list--icon-add" /></div></div>
+      <section className="profileinfo--list">
+        {elements.elements.map((element, index) => {
+          console.log(element)
+          return (
+            <div className="list--row" key={index}>
+              <img className="list--img-cover" src={element.image_path} />
+              <div className="list--name-container">
+                <p className="list--name" onClick={viewItem}>{element.name}</p>
+              </div>
+              <div className="list--buttons">
+                <div className="list--button" onClick={() => modifyItem(index)}><SettingsRounded /></div>
+                <div className="list--button" onClick={() => deleteItem(element.id)}><DeleteRounded /></div>
+              </div>
+            </div>)
+        })}
+      </section>
+    </div>
+  );
 }
