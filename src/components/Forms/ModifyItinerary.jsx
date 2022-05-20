@@ -184,7 +184,7 @@ export default function ModifyItinerary() {
 
         >
           {arrayPlaces.map((e,index) => (
-            <MenuItem key={e} value={e.name}>
+            <MenuItem key={`${e.id}start${index}`} value={e.name}>
               {e.name}
             </MenuItem>
           ))}
@@ -196,7 +196,7 @@ export default function ModifyItinerary() {
             </div> 
             {points.map((e,index)=> 
               <div className="intermediate--points--unit">
-                <p key={index.toString()}>{`${e.place}, el día ${e.date} a las ${e.time}`}</p>
+                <p key={`${e.id}intermediate${index}`}>{`${e.place}, el día ${e.date} a las ${e.time}`}</p>
                 <DeleteRounded key={`${e.place}${index}`} value={index} onClick={()=>deletePoint(index)} />
               </div>)}
 
@@ -209,7 +209,7 @@ export default function ModifyItinerary() {
                 label={textContent.registerForm.points}
               >
                 {arrayPlaces.map((e,index) => (
-                  <MenuItem key={index.toString()} value={e.name} onClick={()=>setPlace({name:e.name,id:e.id})} >
+                  <MenuItem key={`${e.id}addnew${index}`} value={e.name} onClick={()=>setPlace({name:e.name,id:e.id})} >
                    {/*  saving place in state to push it to the intermediate points array */}
                    {/* we save name to show in form and id to save itineraryplace */}
                     {e.name}
@@ -227,7 +227,7 @@ export default function ModifyItinerary() {
           label={`${textContent.registerForm.end}: ${itineraryData.end_location}`}
         >
           {arrayPlaces.map((e, index) => (
-            <MenuItem key={index} value={e.name}>
+            <MenuItem key={`${e.id}end${index}`} value={e.name}>
               {e.name}
             </MenuItem>
           ))}

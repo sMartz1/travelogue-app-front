@@ -35,7 +35,7 @@ const Header = () => {
     return(
         <header className="header--main">
             <div className="header--title">
-                <h1 onClick={signOut}>{textContent.title}</h1>
+                <h1 /* onClick={signOut} */>{textContent.title}</h1>
             </div>
             <nav className="header--navlinks">
                 <ul>

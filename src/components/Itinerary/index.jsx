@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Map from '../Map';
+import getItineraryById from '../../helpers/getItineraryById';
+import getIntermediatePoints from "../../helpers/getIntermediatePoints";
 import './styles.scss'
 
-export default function Itinerary({  }) {
+export default function Itinerary() {
   const [itineratyData, setItineratyData] = useState({id:'0395c2d3-b042-40e1-b1f2-6cd057d56927',name:'Account Chips parse',description:"Viaje por las llanuras de tal hasta cual etc etc",start_location:[39.6163,59.7745],end_location:[-76.1340,111.6725],price:240,created_at:new Date()});
+  const [intermediatePoints,setIntermediatePoints] = useState()
+  const {id} = useParams()
+  const getItinerary = async ()=> {
+    setItineratyData( await getItineraryById(id));
+    setIntermediatePoints( await getIntermediatePoints(id));
+  }
 
-  useEffect(() => {}, []);
-
+  useEffect( ()=> {getItinerary()}, []);
+  console.log(itineratyData)
+  console.log(intermediatePoints)
   return (
     <div className="itinerary-container">
       <div className="itinerary-header">{itineratyData.name}</div>
