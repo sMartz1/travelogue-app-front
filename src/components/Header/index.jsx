@@ -24,6 +24,9 @@ const Header = () => {
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
 
+
+    console.log(window.location.href)
+
     const handleSignOut = () => {
         signOut();
         handleModal();
@@ -32,10 +35,12 @@ const Header = () => {
     const handleModal = () => {
         setModal(!modal)
     }
+
+    const comprobateLocation = window.location.href === 'http://localhost:3000/'
     return (
         <header className="header--main">
             <div className="header--title">
-                <h1 onClick={signOut}>{textContent.title}</h1>
+                <h1 className={`${comprobateLocation ? 'logo--landpage' : 'logo--navigate'}`} onClick={signOut}>{textContent.title}</h1>
             </div>
             <nav className="header--navlinks">
                 <ul>
@@ -44,7 +49,7 @@ const Header = () => {
                             {index == 2 && user?.email ? <div><p onClick={handleModal} className="header--link">
                                 {user.name}
                             </p> </div> :
-                                <NavLink to={element.link} className="header--link">
+                                <NavLink to={element.link} className={`${comprobateLocation ? 'header--link' : 'header--link-navigate'}`}>
                                     {element.title}
                                 </NavLink>}
                             {/* <NavLink to={element.link} className="header--link">
