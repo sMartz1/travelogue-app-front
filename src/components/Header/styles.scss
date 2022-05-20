@@ -1,109 +1,52 @@
 .header--main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: transparent;
     position: absolute;
+    z-index: 99;
     width: 100%;
-    z-index: 2;
-    color: $fontColor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    color:white;
+    .header--title{
+        font-family: 'Jost';
+        cursor: pointer;
+    }
+    .header--menu{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
 
+        .header--menu--item{
+            margin-left: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            .header--menu--item--logout{
+                display: flex;
+                margin-left: 1rem;
+                cursor: pointer;
+            }
+        }
+    }
     @media (min-width:1024px) {
         padding: 1% 5%;
         height: 60px;
     }
-}
-
-.logo--landpage, .logo--navigate{
-    width: 10%;
-    font-weight: 100;
-    margin-left: 8px;
-    text-shadow: 0 0 4px $fontColor;
-}
-
-.logo--navigate{
-    color: $primaryColor;
-    text-shadow: 0 0 4px $primaryColor;
-}
-
-.header--navlinks{
-    border-radius: 5px;
-    width: 100%;
-    height: 30px;
-    color: $fontColor;
-    position: absolute;
-    right: 5%;
-
-    ul{
-        list-style: none;
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: space-around;
-        font-size: 20px;
-        width: 100%;
-    }
-    li{
-        width: 10%;
-        display: flex;
-    }
-
-
-    @media (min-width:1024px) {
-        width: 400px;
-        height: 30px;
-
-        ul{
-            flex-direction: row;
+    @media (max-width:500px) {
+        .header--title{
+            font-size: 0.5rem;
         }
-    }
-
-    @media (max-width:1024px) {
-        top: 90%;
-        left: 1%;
-        width: 10%;
-
-        ul{
-            padding-top: 10px;
+        .header--menu{
+            .header--menu--item{
+                .header--menu--item--logout{
+                    margin-left: 0.3rem;
+                }
+            }
         }
+        
+}}
 
-        li{
-            margin: 0px 5px;
-        }
-    }
-}
 
-.header--link, .header--link-navigate{
-    cursor: pointer;
-    text-align: center;
-    margin: 5px;
-    padding: 0;
-    text-decoration: none;
-    color: $fontColor;
-    text-shadow: 0 0 1px $fontColor;
-    transition-duration: 0.1s;
 
-    &:hover{
-        font-weight: 400;
-        text-shadow: 0 0 10px $fontColor;
-    }
-}
-
-.header--link-navigate{
-    color: $primaryColor;
-
-    &:hover{
-        text-shadow: 0 0 10px $primaryColor;
-    }
-}
-
-.header--modal ul{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.header--title{
-    width: 100%;
-    font-size: 20px;
-}

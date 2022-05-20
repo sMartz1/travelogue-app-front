@@ -8,13 +8,13 @@ export default function TextFieldCustom({ name, control, label, id, errors, type
     <Controller
       name={name}
       control={control}
-      defaultValue=""
+      /* defaultValue="" */
       render={({ field }) => (
         <TextField
           {...field}
           id={id}
-          className="form--input-text"
           label={label}
+          className="form--input-text"
           variant="standard"
           error={!!errors}
           type={type ? type : "text"}

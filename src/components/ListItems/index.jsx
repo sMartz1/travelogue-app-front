@@ -1,22 +1,13 @@
-import React , { useContext } from "react";
+import React , { useState , useEffect , createContext} from "react";
 import { Button } from "@mui/material";
 import Lists from "./Lists"
-import { UserContext } from '../../App';
+import { Auth } from 'aws-amplify';
+import getUserItineraries from '../../helpers/getUserItineraries';
+import getUserPlaces from '../../helpers/getUserPlaces';
 import { useAuth } from "../Context/userContext";
 
+export const UserItinerariesContext = createContext(null);
 
-
-//Temporary mocked data
-const itineraries = [{name:"uno",start:"punto inicial",end:"punto final"},
-    {name:"uno",start:"punto inicial",end:"punto final"},
-    {name:"uno",start:"punto inicial",end:"punto final"},
-    {name:"uno",start:"punto inicial",end:"punto final"} ]
-;
-const places = [{name:"uno",location:"uno"},
-    {name:"uno",location:"uno"},
-    {name:"uno",location:"uno"},
-    {name:"uno",location:"uno"} 
-];
 const textContent = {
   fieldsnames:["Username","First Name","Last Name","Email","Rol","Language"],
   titles:["Itineraries", "Places"],
@@ -24,15 +15,36 @@ const textContent = {
 };
 export default function ListItems() {
   const {user} = useAuth();
+  const [arrayItineraries, setArrayItineraries] = useState([]);
+  const [arrayPlaces, setArrayPlaces] = useState([]);
 
- 
-  return (
-    <div className="list--main--container">
-        <Lists elements={itineraries} title={textContent.titles[0]}/>
-        <Lists elements={places} title={textContent.titles[1]}/>
-        <Button variant="contained" type="submit">
-          {textContent.button}
-        </Button>
-    </div>
-  );
+  const handleItems = async () => {
+    const userdatas = await Auth.currentUserInfo();
+    try {
+      const res = await getUserItineraries(userdatas.username)
+      setArrayItineraries([...res])
+    }catch (err) {console.log(err)}
+
+    try {
+      const res = await getUserPlaces(userdatas.username)
+      setArrayPlaces([...res])
+    }catch (err) {console.log(err)}
+  }
+
+  useEffect( () => {
+    handleItems()
+  }, [])
+
+  return (<>
+    {arrayPlaces.length > 0 ? 
+    <UserItinerariesContext.Provider value={[arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries]}>
+      <div className="list--main--container">
+          <Lists elements={arrayItineraries} title={textContent.titles[0]} path={'/createItinerary'} />
+          <Lists elements={arrayPlaces} title={textContent.titles[1]} path={''} />
+          <Button variant="contained" type="submit">
+            {textContent.button}
+          </Button>
+      </div>
+    </ UserItinerariesContext.Provider> :    <h1>charging...</h1>}
+  </>);
 }

@@ -1,47 +1,43 @@
-import React from "react";
+import React, { useContext , useEffect , useState } from "react";
 import {
   SettingsRounded,
   AddCircleRounded,
   DeleteRounded
 } from "@mui/icons-material";
+import { useNavigate } from 'react-router-dom';
+import deleteItinerary from '../../../helpers/deleteItinerary';
+import deletePlace from '../../../helpers/deletePlace';
+import {UserItinerariesContext} from '../../ListItems';
+import './styles.scss'
 
-//Temporary mocked data
-const user = {
-    username: "x",
-    firstname: "Juan",
-    lastname: "Palomo",
-    email:"miemail@gmail.com",
-    rol:"user",
-    language:"spanish"
-};
 
 export default function Lists(elements) {
-    console.log(elements)
-    const list = Object.values(elements.elements)
-
+    const navigate = useNavigate();
+    const[arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries] = useContext(UserItinerariesContext);
     const viewItem = ()=> {
       console.log('peticion')
     }
     
-    const modifyItem = ()=> {
-      console.log('peticion')
+    const modifyItem = (i)=> {
+      let itineraryToModify = arrayItineraries[i]
+      window.localStorage.setItem('places',JSON.stringify(arrayPlaces));  
+      window.localStorage.setItem('itinerary',JSON.stringify(itineraryToModify));  
+      navigate(`/modifyItinerary/${itineraryToModify.id}`)
     }
 
-    const deleteItem = ()=> {
-      console.log('peticion')
+    const deleteItem = (id)=> {
+      elements.title==='Itineraries'? deleteItinerary(id): deletePlace(id);
     }
 
-    const addItem = ()=> {
-      console.log('peticion')
-    }
-
+    useEffect( () => {
+    }, [])
     return (
       <div className="list--container">
-        <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={addItem}><AddCircleRounded/></div></div>  
+        <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={()=> navigate(`${elements.path}`)}><AddCircleRounded/></div></div>  
         <ul className="profileinfo--list">
-          {list.map((element, index)=> <li key={index}><div className="list--button" onClick={viewItem}>{element.name}</div>
-          <div className="list--button" onClick={modifyItem}><SettingsRounded/></div>
-          <div className="list--button" onClick={deleteItem}><DeleteRounded/></div></li> )}
+          {elements.elements.map((element, index)=> <li key={index}><div className="list--button" onClick={viewItem}>{element.name}</div>
+          <div className="list--button" onClick={()=>modifyItem(index)}><SettingsRounded/></div>
+          <div className="list--button" onClick={()=>deleteItem(element.id)}><DeleteRounded/></div></li> )}
         </ul>
       </div>
     );

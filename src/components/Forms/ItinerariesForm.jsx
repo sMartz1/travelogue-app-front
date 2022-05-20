@@ -7,13 +7,14 @@ import { Button, MenuItem } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import getUserPlaces from '../../helpers/getUserPlaces';
+import postNewItinerary from '../../helpers/postNewItinerary';
+import postItineraryPlaces from '../../helpers/postItineraryPlaces.js';
 import {
   SettingsRounded,
   AddCircleRounded,
   DeleteRounded
 } from "@mui/icons-material";
 import { Auth } from 'aws-amplify';
-
 
 const textContent = {
   registerForm: {
@@ -22,7 +23,8 @@ const textContent = {
     buttonCreate: "Crear Itinerario",
     start: "Start point",
     end: "End point",
-    points: "Intermediate points"
+    points: "Intermediate points",
+    price: "Precio (opcional) "
   },
 
   validations: {
@@ -35,6 +37,7 @@ const textContent = {
 const schema = yup.object().shape({
   itineraryName: yup
     .string()
+    .default("")
     .min(
       3,
       textContent.validations.minChar(
@@ -43,7 +46,11 @@ const schema = yup.object().shape({
       )
     )
     .required(),
-
+  price: yup
+    .number()
+    .nullable()
+    .default(0)
+    .notRequired()
 });
 
 export default function ItinerariesForm() {
@@ -55,17 +62,19 @@ export default function ItinerariesForm() {
   const time = useRef();
   const date = useRef();
   const navigate = useNavigate();
+  const defaultPrice = 0;
 
   const {
     control: controlRegister,
     handleSubmit,
+    reset,
     formState: { errors: errorsRegister },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const handlePoint = () => {
-    const data = { place: place, time: time.current.value, date: date.current.value };
+  const handleNewPoint = () => {
+    const data = { place: place.name, id: place.id, time: time.current.value, date: date.current.value };
     points.push(data);
     setPoints([...points])
     setAddPoint(false)
@@ -77,9 +86,52 @@ export default function ItinerariesForm() {
   }
 
 
-  const onSubmit = (data) => {
-    setPoints([])
+  const onSubmit = async (data) => {
+
+    const userdata = await Auth.currentUserInfo();
+    const dataToSave = {
+      id_user: userdata.username,
+      name: data.itineraryName,
+      start_location: data.start,
+      end_location: data.end,
+      price: data.price,
+    };
+    try {
+      const itinerary = await postNewItinerary(dataToSave);
+
+      reset({ itineraryName: "" })
+      handlePoints(itinerary.id) /* we need itinerary id to save itinerary places */
+    }
+    catch {
+
+      setPoints([])
+    }
   };
+
+  const handlePoints = async (id) => {
+    let data = []; /* array to post itinerary places */
+    if (points.length) {
+
+      points.map((e) => (
+        data.push({
+          id_itinerary: id,
+          id_place: e.id,
+          date_place: `${e.date} ${e.time}:00`
+        })
+      ))
+
+
+      try {
+        await postItineraryPlaces(data)
+        setPoints([])
+      }
+      catch (err) {
+        console.log(err)
+      }
+    }
+    console.log('antes del segundo reset')
+    reset();
+  }
 
   useEffect(() => {
   }, [points])
@@ -99,6 +151,7 @@ export default function ItinerariesForm() {
     handlePlaces()
   }, [])
 
+  console.log(arrayPlaces)
   return (
     <>
       {arrayPlaces.length > 0 ? <form className="itineraries form--main" onSubmit={handleSubmit(onSubmit)}>
@@ -140,15 +193,16 @@ export default function ItinerariesForm() {
               label={textContent.registerForm.points}
             >
               {arrayPlaces.map((e, index) => (
-                <MenuItem key={e.index} value={e.name} onClick={() => setPlace(e.name)} >
+                <MenuItem key={e.index + e.id} value={e.name} onClick={() => setPlace({ name: e.name, id: e.id })} >
                   {/*  saving place in state to push it to the intermediate points array */}
+                  {/* we save name to show in form and id to save itineraryplace */}
                   {e.name}
                 </MenuItem>
               ))}
             </SelectCustom>
             <input type="time" ref={time} />
             <input type="date" ref={date} />
-            <AddCircleRounded onClick={handlePoint} />
+            <AddCircleRounded onClick={handleNewPoint} />
           </div>}
         </div>
         <SelectCustom
@@ -162,7 +216,14 @@ export default function ItinerariesForm() {
             </MenuItem>
           ))}
         </SelectCustom>
-
+        <TextFieldCustom
+          name="price"
+          control={controlRegister}
+          /* defaultValue={defaultPrice} */
+          label={textContent.registerForm.price}
+          id="price-register-form"
+          errors={errorsRegister.price}
+        />
         <Button variant="contained" type="submit" onClick={() => console.log('click')} >
           {textContent.registerForm.buttonCreate}
         </Button>
