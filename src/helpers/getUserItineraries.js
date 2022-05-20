@@ -6,7 +6,7 @@ const getUserItineraries = async (user) => {
   const token = userdata.getAccessToken();
   try {
 
-    const response = await axios.get(`http://localhost:3003/api/secured/itineraries/all/${user}`, 
+    const response = await axios.get(`${process.env.REACT_APP_HOST_DB}api/secured/itineraries/all/${user}`, 
     { headers: {"Authorization" : `${token.jwtToken}`} });
   return response.data.own
   }
