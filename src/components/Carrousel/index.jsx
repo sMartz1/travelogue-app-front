@@ -7,11 +7,6 @@ import 'swiper/scss/pagination';
 import 'swiper/scss/scrollbar';
 import 'swiper/scss/grid';
 
-const itineraries = [
-    { urlImage: 'https://img1.10bestmedia.com/Images/Photos/378847/GettyImages-1085317916_54_990x660.jpg', title: 'Barcelona' }, { urlImage: 'https://a.cdn-hotels.com/gdcs/production133/d1207/7ad2d7f0-68ce-11e8-8a0f-0242ac11000c.jpg', title: 'Madrid' },
-    { urlImage: 'https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900', title: 'Paris' }, { urlImage: 'https://www.cadizturismo.com/storage/app/media/uploaded-files/p-cadiz_turismo.jpg', title: 'Cadiz' }
-]
-
 export function Carrousel(props) {
     /* const itineraries = props.itineraries */
 
