@@ -46,7 +46,6 @@ const Header = () => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
   const handleSignOut = () => {
@@ -79,7 +78,6 @@ const Header = () => {
       </div>
     </>
   );
-  console.log(textColorClass);
   return (
     <header className={textColorClass}>
       <div className="header--title" onClick={() => navigate("/")}>

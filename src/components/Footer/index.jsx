@@ -30,7 +30,7 @@ export default function Footer() {
         <div className="footer--body-superior">
             {textContent.SocialMedia.map((e, i) => {
                 return (
-                    <div className='footer--social-container' key={i}>
+                    <div key={i} className='footer--social-container'>
                         <e.icon />
                         <a href={e.link}
                             className="footer--link"

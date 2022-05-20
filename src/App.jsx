@@ -42,7 +42,7 @@ function App() {
             <Route path="/createitinerary" element={<ItinerariesForm />} />
             <Route path="/modifyitinerary/:id" element={<ModifyItinerary />} />
             <Route path="/discover" element={<Discover />} />
-            <Route path="/itinerary" element={<Itinerary />} />
+            <Route path="/itinerary/:id" element={<Itinerary />} />
             <Route path="/place/:id" element={<PlaceView />} />
             <Route path='/createPlace' element={<CreatePlaceView />} />
           </Routes>

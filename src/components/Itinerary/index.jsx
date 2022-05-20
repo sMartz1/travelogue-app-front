@@ -1,25 +1,87 @@
-import React, { useState, useEffect } from "react";
-import Map from '../Map';
-import './styles.scss'
+import { useState, useEffect, useRef } from "react";
+import Map from "../Map";
+import { useParams } from "react-router-dom";
+import "./styles.scss";
+import getItineraryById from "../../helpers/getItineraryById";
+import getItineraryPlaces from "../../helpers/getItineraryPlaces";
+import WarningIcon from "@mui/icons-material/Warning";
+import getPlaceById from "../../helpers/getPlaceById";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import StepContent from "@mui/material/StepContent";
+import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 
-export default function Itinerary({  }) {
-  const [itineratyData, setItineratyData] = useState({id:'0395c2d3-b042-40e1-b1f2-6cd057d56927',name:'Account Chips parse',description:"Viaje por las llanuras de tal hasta cual etc etc",start_location:[39.6163,59.7745],end_location:[-76.1340,111.6725],price:240,created_at:new Date()});
+export default function Itinerary() {
+  const { id } = useParams();
+  const [itineratyData, setItineratyData] = useState(null);
+  const [itineratyPlaceData, setItineratyPlaceData] = useState(null);
+  const [places, setPlaces] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const clickPlace = useRef(null);
+  const [activeStep, setActiveStep] = useState(0);
 
-  useEffect(() => {}, []);
+  const getData = async () => {
+    await getDataItinerary();
+    await getDataItineraryPlace();
+    setIsLoading(false);
+  };
+  const getDataItinerary = async () => {
+    const data = await getItineraryById(id);
+    setItineratyData(data);
+  };
+  const getDataItineraryPlace = async () => {
+    const data = await getItineraryPlaces(id);
+    //format coords
+    let tempArr = [];
+    for (const element of data) {
+      const dataPlace = await getPlaceById(element.id_place);
+      const arrNumbers = dataPlace.location.split(",");
+      tempArr.push({
+        ...dataPlace,
+        coordinates: [
+          parseFloat(parseFloat(arrNumbers[0]).toFixed(2)),
+          parseFloat(parseFloat(arrNumbers[1]).toFixed(2)),
+        ],
+      });
+    }
+    setItineratyPlaceData(data);
+    setPlaces(tempArr);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
 
-  return (
-    <div className="itinerary-container">
-      <div className="itinerary-header">{itineratyData.name}</div>
-      <div className="itinerary-description">{itineratyData.description}</div>
-      <div className="itinerary-map">
-        <div className="itinerary-place-list">
-          <div className="place-list-item">1</div>
-          <div className="place-list-item">2</div>
-          <div className="place-list-item">3</div>
-          <div className="place-list-item">4</div>
+  const handleClickStepper = (i) => {
+    setActiveStep(i);
+    clickPlace.current(i);
+  };
+
+  if (!isLoading)
+    return (
+      <div className="itinerary-container">
+        <div className="itinerary-header">{itineratyData.name}</div>
+        <div className="itinerary-description">{itineratyData.description}</div>
+        <div className="itinerary-map">
+          <div className="itinerary-place-list">
+            <Stepper activeStep={activeStep} orientation="vertical">
+              {places.map((step, i) => (
+                <Step key={step.name}>
+                  <StepLabel
+                    onClick={() => {
+                      handleClickStepper(i);
+                    }}
+                  >
+                    {step.name}
+                  </StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </div>
+          <div className="itinerary-map-container">
+            <Map features={places} changePlace={clickPlace} search={false} />
+          </div>
         </div>
-        <div className="itinerary-map-container"><Map search={false}/></div>
       </div>
-    </div>
-  );
+    );
 }

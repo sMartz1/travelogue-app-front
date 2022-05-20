@@ -7,7 +7,7 @@ const deletePlace = async (place_id) => {
   try {
     const response = axios({
       method: 'delete',
-      url: `http://localhost:3003/api/secured/places/deleteplace`,
+      url: `${process.env.REACT_APP_HOST_DB}api/secured/places/deleteplace`,
       data: { id: place_id },
       headers: {
         Authorization: `${token.jwtToken}`

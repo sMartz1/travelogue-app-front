@@ -9,6 +9,7 @@ export default function PlaceView(){
 
     const getPlace = async () => {
         const {data} = await axios.get(`http://localhost:3003/api/places/singlePlace/${id}`)
+        console.log(data)
         setPlace(data)
     }
 
@@ -19,7 +20,7 @@ export default function PlaceView(){
     return <div className="place--container">
         {place ? 
             <>
-                <img className="place--image" src={place[0].pathImage} width='70px' height='70px' alt={place.name}/>
+                <img className="place--image" src={place.image_path} width='70px' height='70px' alt={place.name}/>
                 <h1>{place.name}</h1>
                 <h2>{place.location}</h2>
                 <p>{place.price}</p> 

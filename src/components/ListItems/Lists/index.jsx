@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   SettingsRounded,
   AddCircleRounded,
-  DeleteRounded
+  DeleteRounded,
+  NavigationSharp
 } from "@mui/icons-material";
 import { useNavigate } from 'react-router-dom';
 import deleteItinerary from '../../../helpers/deleteItinerary';
@@ -13,8 +14,8 @@ import { UserItinerariesContext } from '../../ListItems';
 export default function Lists(elements) {
   const navigate = useNavigate();
   const [arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries] = useContext(UserItinerariesContext);
-  const viewItem = () => {
-    console.log('peticion')
+  const viewItem = (id) => {
+    elements.title === 'Itineraries' ? navigate(`/itinerary/${id}`) : navigate(`/place/${id}`)
   }
 
   const modifyItem = (i) => {
@@ -51,7 +52,6 @@ export default function Lists(elements) {
       <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={() => navigate(`${elements.path}`)}><AddCircleRounded className="list--icon-add" /></div></div>
       <section className="profileinfo--list">
         {elements.elements.map((element, index) => {
-          console.log(elements.title)
           return (
             <div className="list--row" key={index}>
               <img className="list--img-cover" src={element.image_path} />

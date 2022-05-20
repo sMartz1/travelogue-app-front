@@ -81,7 +81,7 @@ export default function PlaceForm() {
       const userdata = await Auth.currentSession()
       const token = userdata.getAccessToken()
     const t = await 
-      axios.post('http://localhost:3003/api/secured/places/createPlace',{
+      axios.post(`${process.env.REACT_APP_HOST_DB}api/secured/places/createPlace`,{
         name:data_form.name,
         price : data_form.price,
         location : `${marker.geometry.coordinates[0]},${marker.geometry.coordinates[1]}`,
