@@ -7,7 +7,7 @@ const deleteItinerary = async (place_id) => {
   try {
     const response = axios({
         method: 'delete', 
-        url: `${process.env.REACT_APP_HOST_DB}api/secured/places/deleteplace`,
+        url: `${process.env.REACT_APP_API_URL}secured/places/deleteplace`,
         data: {id:place_id},
         headers: {
             Authorization : `${token.jwtToken}`
