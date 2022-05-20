@@ -1,6 +1,7 @@
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import PublicIcon from '@mui/icons-material/Public';
 
 const textContent = {
     SocialMedia: [
@@ -15,7 +16,7 @@ const textContent = {
 
     ], */
     CompanyName: {
-        logo: 'tarara',
+        logo: PublicIcon,
         name: 'Travelogue'
     },
     TimeOfCreation: '© 2022 Travelogue Company '
@@ -40,7 +41,13 @@ export default function Footer() {
             })}
         </div>
         <div className='footer--body-inferior'>
-
+            <div className="footer--container-bottom">
+                <textContent.CompanyName.logo />
+                <p className='footer--text'>{textContent.CompanyName.name}</p>
+            </div>
+            <div className="footer--container-bottom">
+                <p className="footer-text">{textContent.TimeOfCreation}</p>
+            </div>
         </div>
     </footer>
 

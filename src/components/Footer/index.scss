@@ -5,11 +5,12 @@
     padding-top: 10px;
     background-color: $backgroundColor;
     color: $fontColor;
+    box-shadow: 0 0 10px inset $primaryColor;
 }
 
 .footer--body-superior, .footer--body-inferior{
     width: 100%;
-    height: 50px;
+    height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -24,10 +25,21 @@
     }
 }
 
+.footer--body-inferior{
+    flex-direction: column;
+    padding-top: 4px;
+}
+
 .footer--social-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.footer--container-bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .footer--link{
