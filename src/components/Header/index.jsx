@@ -46,7 +46,6 @@ const Header = () => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
   const handleSignOut = () => {

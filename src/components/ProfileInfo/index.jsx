@@ -27,7 +27,7 @@ export default function Profileinfo() {
         {valuesdata.map((element, index)=> <li key={index}><div>{textContent.fieldsnames[index]}</div><div>{element}</div></li>)}
         
       </ul>
-      <Button variant="contained" type="submit">
+      <Button variant="contained" type="button" onClick={()=>navigate('/lists')}>
         {textContent.button}
       </Button>
     </div>

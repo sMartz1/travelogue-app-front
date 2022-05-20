@@ -62,8 +62,6 @@ export default function ItinerariesForm() {
   const time = useRef();
   const date = useRef();
   const navigate = useNavigate();
-  const defaultPrice = 0;
-
   const {
     control: controlRegister,
     handleSubmit,
@@ -183,7 +181,6 @@ export default function ItinerariesForm() {
               <p key={`${e.date}${index}`}>{`${e.place}, el día ${e.date} a las ${e.time}`}</p>
               <DeleteRounded key={`${e.place}${index}`} value={index} onClick={() => deletePoint(index)} />
             </div>)}
-
           {/* modal to add intermediate point   */}
           {addPoint && <div className="points">
             <SelectCustom
@@ -211,7 +208,7 @@ export default function ItinerariesForm() {
           label={textContent.registerForm.end}
         >
           {arrayPlaces.map((e, index) => (
-            <MenuItem key={e.index} value={e.name}>
+            <MenuItem key={`${e.index}end${index}`} value={e.name}>
               {e.name}
             </MenuItem>
           ))}
@@ -219,7 +216,6 @@ export default function ItinerariesForm() {
         <TextFieldCustom
           name="price"
           control={controlRegister}
-          /* defaultValue={defaultPrice} */
           label={textContent.registerForm.price}
           id="price-register-form"
           errors={errorsRegister.price}
