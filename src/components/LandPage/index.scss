@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(0, 255, 255, 0.118);
     height: 100vh;
     z-index: 1;
 }
@@ -19,7 +18,6 @@
     background-color: $backgroundColorTransparency;
     width: 100%;
     height: 100vh;
-    z-index: 1;
 }
 
 /* .perks{
