@@ -44,8 +44,8 @@ export default function RecoverForm() {
   async function forgotPassword(user) {
     try {
       await Auth.forgotPassword(user);
-        console.log('change password code sent');
-        navigate('/changepassword')
+      console.log('change password code sent');
+      navigate('/changepassword')
     } catch (err) {
       console.log('error resending code: ', err);
     }
@@ -56,8 +56,8 @@ export default function RecoverForm() {
   };
 
   return (<>
-    <form onSubmit={handleSubmit(onSubmit)}>
-       <TextFieldCustom
+    <form className="form--main" onSubmit={handleSubmit(onSubmit)}>
+      <TextFieldCustom
         name="email"
         control={controlRecover}
         label={textContent.recoverForm.email}
