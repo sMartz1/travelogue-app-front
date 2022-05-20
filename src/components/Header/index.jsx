@@ -79,7 +79,6 @@ const Header = () => {
       </div>
     </>
   );
-  console.log(textColorClass);
   return (
     <header className={textColorClass}>
       <div className="header--title" onClick={() => navigate("/")}>
