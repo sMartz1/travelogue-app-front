@@ -24,9 +24,6 @@ const Header = () => {
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
 
-
-    console.log(window.location.href)
-
     const handleSignOut = () => {
         signOut();
         handleModal();
