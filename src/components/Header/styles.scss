@@ -82,6 +82,10 @@
 
 .header--link-navigate{
     color: $primaryColor;
+
+    &:hover{
+        text-shadow: 0 0 10px $primaryColor;
+    }
 }
 
 .header--modal ul{
