@@ -1,34 +1,30 @@
 .swiper{
     display: flex;
     flex-direction: row;
-    position: relative;
-    background-color: #417d7a4a;
-    box-shadow: 0 0 10px #1A3C40;
     padding-top: 5px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 210px;
 }
 
 
+.carrousel--name-item{
+    color: $fontColor;
+}
+
 .swiper-pagination {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: center;
     position: absolute;
-    gap: 3%;
-    top: 260px;
-    height: 45px;
+    top: 110%;
 }
 
 .swiper-thumb {
     margin-top: 20px;
+    height: 100px;
 }
 
-.carrousel--img-slider{
+.carrousel--frame-image{
     width: 200px;
     height: 200px;
-    box-shadow: 0 0 10px #1A3C40;
-    border-radius: 5px;
     cursor: pointer;
 
     @media (max-width:800px) {
@@ -37,10 +33,54 @@
     }
 }
 
-.carrousel--img-slider:hover{
-    box-shadow: 0 0 20px #1A3C40;
+.carrousel--img-slider{
+    object-fit: cover;
+    position: absolute;
+    left: 9px;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    box-shadow: 0 0 10px $backgroundColor;
+    border-radius: 5px;
+
+}
+
+.carrousel--container-text{
+    position: absolute;
+    left: 10px;
+    background-color: $backgroundColorTransparency;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+
+    &::before{
+        position: absolute;
+        top: -30px;
+        right: 0px;
+        border-radius: 150px 0px 0px 0px;
+        content: "";
+        background-color: $backgroundColorTransparency;
+        width: 80px;
+        height: 30px;
+    }
+
+}
+
+.carrousel--frame-image:hover{
+    .carrousel--img-slider{
+        box-shadow: 0 0 20px $backgroundColor;
+    }
+    .carrousel--name-item{
+        text-shadow: 0 0 20px $fontColor;
+    }
 }
 
 .swiper-slider{
     text-align: center;
+}
+
+.carrousel--name-item{
+    z-index: 10;
+    font-weight: 400;
 }
