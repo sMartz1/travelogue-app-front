@@ -9,6 +9,7 @@
     color:white;
     .header--title{
         font-family: 'Jost';
+        cursor: pointer;
     }
     .header--menu{
         display: flex;
@@ -20,10 +21,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
 
             .header--menu--item--logout{
                 display: flex;
                 margin-left: 1rem;
+                cursor: pointer;
             }
         }
     }

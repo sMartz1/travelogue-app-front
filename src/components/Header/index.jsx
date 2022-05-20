@@ -34,8 +34,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    console.log('path',blackHeaderPaths.includes(location.pathname));
-    setIsBlack(blackHeaderPaths.includes(location.pathname));
+     setIsBlack(blackHeaderPaths.includes(location.pathname));
   }, [location]);
 
   useEffect(() => {
@@ -101,6 +100,7 @@ const Header = () => {
         </Alert>
       </Snackbar>
     </header>
+   
   );
 };
 
