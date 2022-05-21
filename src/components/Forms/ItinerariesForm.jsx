@@ -54,6 +54,7 @@ const schema = yup.object().shape({
     .default(0)
     .notRequired()
 });
+const defaultPrice = 0;
 
 export default function ItinerariesForm() {
 
@@ -63,7 +64,6 @@ export default function ItinerariesForm() {
   const [arrayPlaces, setArrayPlaces] = useState([]);
   const time = useRef();
   const date = useRef();
-  const defaultPrice = 0;
   const navigate = useNavigate();
   const {
     control: controlRegister,
