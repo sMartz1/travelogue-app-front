@@ -7,7 +7,7 @@ const getPlaceById = async (id) => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}secured/places/id/${id}`, 
     { headers: {"Authorization" : `${token.jwtToken}`} });
-  return response.data[0]
+  return response.data
   }
   catch(err) {
     console.log(err)

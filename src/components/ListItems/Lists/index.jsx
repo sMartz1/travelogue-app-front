@@ -29,6 +29,7 @@ export default function Lists(elements) {
 
   }
 
+
   const deleteItem = (id) => {
     elements.title === 'Itineraries' ? deleteItinerary(id) : deletePlace(id);
     if (elements.title === 'Itineraries') {
@@ -62,6 +63,7 @@ export default function Lists(elements) {
             <div className="list--row" key={index}>
               <img className="list--img-cover" src={element.image_path} />
               <div className="list--name-container">
+
                 <p className="list--name" onClick={()=>viewItem(element.id,elements.title)}>{element.name}</p>
               </div>
               <div className="list--buttons">
