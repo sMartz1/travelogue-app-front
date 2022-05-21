@@ -226,6 +226,8 @@ export default function ItinerariesForm() {
           name="price"
           control={controlRegister}
           defaultValue={defaultPrice}
+          adornment={'$'}
+          position={'start'}
           label={textContent.registerForm.price}
           id="price-register-form"
           errors={errorsRegister.price}
