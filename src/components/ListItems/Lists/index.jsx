@@ -14,19 +14,16 @@ import { UserItinerariesContext } from '../../ListItems';
 export default function Lists(elements) {
   const navigate = useNavigate();
   const [arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries] = useContext(UserItinerariesContext);
-  
+
   const viewItem = (id, type) => {
-    type === "Itineraries" ?  navigate(`/itinerary/${id}`) :navigate(`/place/${id}`)
+    type === "Itineraries" ? navigate(`/itinerary/${id}`) : navigate(`/place/${id}`)
   }
 
-  const modifyItem = (i, isItinerary) => {
-    if (isItinerary) {
-        let itineraryToModify = arrayItineraries[i]
-        window.localStorage.setItem('places', JSON.stringify(arrayPlaces));
-        window.localStorage.setItem('itinerary', JSON.stringify(itineraryToModify));
-        navigate(`/modifyItinerary/${itineraryToModify.id}`)
-    }
-
+  const modifyItem = (i) => {
+    let itineraryToModify = arrayItineraries[i]
+    window.localStorage.setItem('places', JSON.stringify(arrayPlaces));
+    window.localStorage.setItem('itinerary', JSON.stringify(itineraryToModify));
+    navigate(`/modifyItinerary/${itineraryToModify.id}`)
   }
 
 
@@ -64,10 +61,10 @@ export default function Lists(elements) {
               <img className="list--img-cover" src={element.image_path} />
               <div className="list--name-container">
 
-                <p className="list--name" onClick={()=>viewItem(element.id,elements.title)}>{element.name}</p>
+                <p className="list--name" onClick={() => viewItem(element.id, elements.title)}>{element.name}</p>
               </div>
               <div className="list--buttons">
-                {elements.title === 'Places' ? null : <div className="list--button" onClick={() => modifyItem(index,element.description? false:true)}><SettingsRounded /></div>}
+                {elements.title === 'Places' ? null : <div className="list--button" onClick={() => modifyItem(index)}><SettingsRounded /></div>}
                 <div className="list--button" onClick={() => deleteItem(element.id)}><DeleteRounded /></div>
               </div>
             </div>)
@@ -75,5 +72,5 @@ export default function Lists(elements) {
       </section>
     </div>
   );
-  
+
 }
