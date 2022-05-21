@@ -19,6 +19,7 @@ import { Auth } from 'aws-amplify';
 const textContent = {
   registerForm: {
     itineraryName: "Nombre de itinerario",
+    description:"Descripción",
     lastName: "Apellidos",
     buttonCreate: "Crear Itinerario",
     start: "Start point",
@@ -90,6 +91,7 @@ export default function ItinerariesForm() {
     const dataToSave = {
       id_user: userdata.username,
       name: data.itineraryName,
+      description:data.description,
       start_location: data.start,
       end_location: data.end,
       price: data.price,
@@ -159,6 +161,13 @@ export default function ItinerariesForm() {
           label={textContent.registerForm.itineraryName}
           id="itineraryName-register-form"
           errors={errorsRegister.itineraryName}
+        />
+        <TextFieldCustom
+          name="description"
+          control={controlRegister}
+          label={textContent.registerForm.description}
+          id="description-register-form"
+          errors={errorsRegister.description}
         />
         <SelectCustom
           name="start"
