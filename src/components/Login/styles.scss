@@ -1,14 +1,10 @@
 .form-login-container{
-    
+    text-align: center;
+    padding-bottom: 20px;
     form{
         height: 100%;
         display: flex;
         flex-flow: column;
         align-items: center;
-        width: minmax(500px,300px);
-        >*{
-           margin-top: 1.2rem;
-        }
     }
-
 }
