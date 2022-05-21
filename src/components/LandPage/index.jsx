@@ -41,13 +41,13 @@ export default function Landpage() {
           <article className="popular-itineraries carrousel-container">
             <div className="title-landpage-carousel">Popular itineraries</div>
             <div className="carousel-landpage">
-              {carrousel1.length > 0 ? <Carrousel objects={carrousel1} /> : null}
+              {carrousel2.length > 0 ? <Carrousel objects={carrousel2} type='itinerary' /> : null}
             </div>
           </article>
           <article className="popular-places carrousel-container">
             <div className="title-landpage-carousel">Popular Places</div>
             <div className="carousel-landpage">
-              {carrousel2.length > 0 ? <Carrousel objects={carrousel2} /> : null}
+              {carrousel1.length > 0 ? <Carrousel objects={carrousel1} type='place' /> : null}
             </div>
           </article>
         </section>

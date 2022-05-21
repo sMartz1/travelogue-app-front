@@ -28,6 +28,7 @@ export default function Itinerary() {
   };
   const getDataItinerary = async () => {
     const data = await getItineraryById(id);
+    console.log({ data })
     setItineratyData(data);
   };
   const getDataItineraryPlace = async () => {
