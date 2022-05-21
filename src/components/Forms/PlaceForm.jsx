@@ -89,6 +89,7 @@ export default function PlaceForm() {
         id_user:user.sub
     },{ headers : {"Authorization" : `${token.jwtToken}`}})  
     console.log('submit',t);
+    navigate('/profile');
   };
 
   useEffect(() => {
@@ -100,11 +101,14 @@ export default function PlaceForm() {
 
 
   console.log('user',user);
-  return <><form className="place--form" onSubmit={handleSubmit(onSubmit)}>
-    {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found' /> : null}
+  return <>
+  
+  <form className="place--form" onSubmit={handleSubmit(onSubmit)}>
+    <div className="img-container">{previewImg ? <img src={previewImg} alt='img not found' /> : null}
     <FileCustom
       setFile={setFile}
-    />
+    /></div>
+    
     <TextFieldCustom name="name"
       control={controlPlace}
       label={textContent.placeForm.name}
@@ -120,12 +124,7 @@ export default function PlaceForm() {
     <div className="map-container-create-place">
     <Map setMarker={setMarker}/>
     </div>
-    {/* <TextFieldCustom name="location"
-    control = {controlPlace}
-    label={textContent.placeForm.location}
-    id="place-location"
-    errors={errorsPlace.location}/> */}
-    <Button variant="contained" type="submit">
+    <Button variant="contained" type="submit" className="list--buttons">
       {textContent.placeForm.buttonPlace}
     </Button>
   </form>

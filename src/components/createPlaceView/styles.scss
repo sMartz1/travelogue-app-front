@@ -2,18 +2,48 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    padding: 40px;
     gap: 30px;
-    
 }
 .create--place{
     display: flex;
     justify-content: center;
+    width: 100%;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
 }
-
+.list--buttons{
+    background-color: $backgroundColor !important;
+    padding: 3px 7px;
+    width: 100%;
+    border-radius: 0px 10px 0px 5px;
+    box-shadow: 0px 0px 10px inset $primaryColor;
+    display: flex;
+    flex-direction: row;
+}
 .map-container-create-place{
     display: flex;
     height: 300px;
     width:300px;
 }
+.file-input{
+    width: 100%;
+}
+.img-container{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 
+    img{
+        height: 200px;
+        width: 200px;
+        margin-bottom: 2rem;
+    }
+}
+@media (max-width:400px) {
+    .place-form{
+        width: 100%;
+       
+        
+    }
+}

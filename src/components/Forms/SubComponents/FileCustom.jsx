@@ -13,12 +13,13 @@ const Input = styled("input")({
         <div className="file-input">
             <label htmlFor="contained-button-file">
                 <Input
+                    className="list--buttons"
                     accept="image/*"
                     id="contained-button-file"
                     type="file"
                     onChange={(e)=> setFile(e.target.files[0])}
                     />
-                <Button variant="contained" component="span">
+                <Button variant="contained" component="span" className="list--buttons">
                     Upload Image
                 </Button>
             </label>
