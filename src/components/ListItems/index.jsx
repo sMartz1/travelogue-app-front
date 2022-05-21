@@ -36,11 +36,11 @@ export default function ListItems() {
   }, [])
 
   return (<>
-    {arrayPlaces.length > 0 ?
+    {arrayPlaces.length > 0 || arrayItineraries.length > 0?
       <UserItinerariesContext.Provider value={[arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries]}>
         <div className="list--main--container">
           <Lists elements={arrayItineraries} title={textContent.titles[0]} path={'/createItinerary'} />
-          <Lists elements={arrayPlaces} title={textContent.titles[1]} path={''} />
+          <Lists elements={arrayPlaces} title={textContent.titles[1]} path={'/createPlace'} />
         </div>
         <div className="list--container-button-submit">
           <Button className="list--button-submit" variant="contained" type="submit">

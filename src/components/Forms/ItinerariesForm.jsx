@@ -19,6 +19,7 @@ import { Auth } from 'aws-amplify';
 const textContent = {
   registerForm: {
     itineraryName: "Nombre de itinerario",
+    description:"Descripción",
     lastName: "Apellidos",
     buttonCreate: "Crear Itinerario",
     start: "Start point",
@@ -90,14 +91,14 @@ export default function ItinerariesForm() {
     const dataToSave = {
       id_user: userdata.username,
       name: data.itineraryName,
+      description:data.description,
       start_location: data.start,
       end_location: data.end,
       price: data.price,
     };
     try {
       const itinerary = await postNewItinerary(dataToSave);
-
-      reset({ itineraryName: "" })
+      reset({ itineraryName: "" , description:""})
       handlePoints(itinerary.id) /* we need itinerary id to save itinerary places */
     }
     catch {
@@ -127,8 +128,8 @@ export default function ItinerariesForm() {
         console.log(err)
       }
     }
-    console.log('antes del segundo reset')
     reset();
+    navigate('/profile')
   }
 
   useEffect(() => {
@@ -149,7 +150,6 @@ export default function ItinerariesForm() {
     handlePlaces()
   }, [])
 
-  console.log(arrayPlaces)
   return (
     <>
       {arrayPlaces.length > 0 ? <form className="itineraries form--main" onSubmit={handleSubmit(onSubmit)}>
@@ -159,6 +159,13 @@ export default function ItinerariesForm() {
           label={textContent.registerForm.itineraryName}
           id="itineraryName-register-form"
           errors={errorsRegister.itineraryName}
+        />
+        <TextFieldCustom
+          name="description"
+          control={controlRegister}
+          label={textContent.registerForm.description}
+          id="description-register-form"
+          errors={errorsRegister.description}
         />
         <SelectCustom
           name="start"

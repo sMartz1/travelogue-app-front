@@ -1,8 +1,6 @@
-import { useContext, useEffect } from "react";
-import { Auth } from "aws-amplify";
-import "./index.scss";
-import PlaceForm from "../Forms/PlaceForm";
-import { useAuth } from "../Context/userContext";
+import { useState, useEffect } from "react";
+import { getRandoms } from "../../helpers/getRandoms";
+import { Carrousel } from "../Carrousel";
 
 const textContent = {
   title: {
@@ -12,6 +10,23 @@ const textContent = {
 };
 
 export default function Landpage() {
+  const [carrousel1, setCarrousel1] = useState([])
+  const [carrousel2, setCarrousel2] = useState([])
+
+  useEffect(() => {
+    call();
+  }, [])
+
+  useEffect(() => {
+
+  }, [carrousel1, carrousel2])
+
+  const call = async () => {
+    const response = await getRandoms();
+    setCarrousel1(response[0]);
+    setCarrousel2(response[1]);
+  }
+
   return (
     <>
       <main className="landpage--main--container">
@@ -25,12 +40,15 @@ export default function Landpage() {
         <section className="landpage--body">
           <article className="popular-itineraries carrousel-container">
             <div className="title-landpage-carousel">Popular itineraries</div>
-            <div className="carousel-landpage"> Carousel1</div>
+            <div className="carousel-landpage">
+              {carrousel1.length > 0 ? <Carrousel objects={carrousel1} /> : null}
+            </div>
           </article>
           <article className="popular-places carrousel-container">
             <div className="title-landpage-carousel">Popular Places</div>
-            <div className="carousel-landpage"> Carousel2</div>
-
+            <div className="carousel-landpage">
+              {carrousel2.length > 0 ? <Carrousel objects={carrousel2} /> : null}
+            </div>
           </article>
         </section>
       </main>
