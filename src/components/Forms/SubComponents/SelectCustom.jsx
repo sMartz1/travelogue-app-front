@@ -5,7 +5,7 @@ import {
   FormControl,
   Select
 } from "@mui/material";
-export default function SelectCustom({ name, control, label, id, children }) {
+export default function SelectCustom({ name, control, label, id, children,defaultValue }) {
   return (
     <FormControl
       sx={{ width: '100%' }} >
@@ -13,8 +13,7 @@ export default function SelectCustom({ name, control, label, id, children }) {
       <Controller
         name={name}
         control={control}
-        /* defaultValue={"es"} */
-        defaultValue={""}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <Select {...field} label={label}>
             {children}

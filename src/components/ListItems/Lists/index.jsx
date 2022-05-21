@@ -25,6 +25,7 @@ export default function Lists(elements) {
     navigate(`/modifyItinerary/${itineraryToModify.id}`)
   }
 
+
   const deleteItem = (id) => {
     elements.title === 'Itineraries' ? deleteItinerary(id) : deletePlace(id);
     if (elements.title === 'Itineraries') {
@@ -56,7 +57,7 @@ export default function Lists(elements) {
             <div className="list--row" key={index}>
               <img className="list--img-cover" src={element.image_path} />
               <div className="list--name-container">
-                <p className="list--name" onClick={viewItem}>{element.name}</p>
+                <p className="list--name" onClick={()=>viewItem(element.id)}>{element.name}</p>
               </div>
               <div className="list--buttons">
                 {elements.title === 'Places' ? null : <div className="list--button" onClick={() => modifyItem(index)}><SettingsRounded /></div>}

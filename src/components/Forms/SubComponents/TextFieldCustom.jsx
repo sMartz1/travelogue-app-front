@@ -3,12 +3,12 @@ import { Controller } from "react-hook-form";
 import {
   TextField, InputAdornment
 } from "@mui/material";
-export default function TextFieldCustom({ name, control, label, id, errors, type, adornment, position }) {
+export default function TextFieldCustom({ name, control, label, id, errors, type, adornment, position,defaultValue }) {
   return (
     <Controller
       name={name}
       control={control}
-      /* defaultValue="" */
+       defaultValue=""
       render={({ field }) => (
         <TextField
           {...field}

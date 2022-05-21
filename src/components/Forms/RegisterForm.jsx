@@ -180,6 +180,7 @@ export default function RegisterForm() {
             name="language"
             control={controlRegister}
             label={textContent.registerForm.language}
+            defaultValue="es"
           >
             {textContent.arrayLanguages.map((e) => (
               <MenuItem key={e.value} value={e.value}>
