@@ -17,6 +17,7 @@ import {
 import { Auth } from 'aws-amplify';
 
 const textContent = {
+  noPlaces:"You need places to create an itinerary",
   registerForm: {
     itineraryName: "Nombre de itinerario",
     description:"Descripción",
@@ -62,6 +63,7 @@ export default function ItinerariesForm() {
   const [arrayPlaces, setArrayPlaces] = useState([]);
   const time = useRef();
   const date = useRef();
+  const defaultPrice = 0;
   const navigate = useNavigate();
   const {
     control: controlRegister,
@@ -223,6 +225,7 @@ export default function ItinerariesForm() {
         <TextFieldCustom
           name="price"
           control={controlRegister}
+          defaultValue={defaultPrice}
           label={textContent.registerForm.price}
           id="price-register-form"
           errors={errorsRegister.price}
@@ -230,7 +233,7 @@ export default function ItinerariesForm() {
         <Button variant="contained" type="submit" onClick={() => console.log('click')} >
           {textContent.registerForm.buttonCreate}
         </Button>
-      </form> : <h1>Charging...</h1>}
+      </form> : <h3 className="no-places">{textContent.noPlaces}</h3>}
     </>
   );
 }
