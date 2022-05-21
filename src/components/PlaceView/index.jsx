@@ -34,7 +34,6 @@ export default function PlaceView(){
     return <div className="place--container">
         {place ? 
             <>
-<<<<<<< HEAD
                 <img className="place--image" src={place.image_path} width='70px' height='70px' alt={place.name}/>
                 <div className="place-header">
                     <h1>{place.name}/{place.price}$</h1>
@@ -43,12 +42,6 @@ export default function PlaceView(){
                     <Map features={coordinates}  search={false} />
                 </div>
                 
-=======
-                <img className="place--image" src={place[0].pathImage} width='70px' height='70px' alt={place.name}/>
-                <h1>{place.name}</h1>
-                <h2>{place.location}</h2>
-                <p>{place.price}</p> 
->>>>>>> a25bc9e1b535e15bda5112593dd28a526a8c4071
             </>
             : null}
         
