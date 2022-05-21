@@ -44,7 +44,6 @@ export default function RecoverForm() {
   async function forgotPassword(user) {
     try {
       await Auth.forgotPassword(user);
-      console.log('change password code sent');
       navigate('/changepassword')
     } catch (err) {
       console.log('error resending code: ', err);

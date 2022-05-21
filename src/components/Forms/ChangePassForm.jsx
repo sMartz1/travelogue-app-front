@@ -57,7 +57,6 @@ export default function ChangePassForm() {
   async function forgotPasswordSubmit(datas) {
     try {
       await Auth.forgotPasswordSubmit(datas.email,datas.confirmationcode, datas.password);
-      console.log('password updated sucessfully');
       navigate('/login')
     } catch (err) {
       console.log('error resending code: ', err);
