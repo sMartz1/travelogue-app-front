@@ -36,7 +36,7 @@ export default function ListItems() {
   }, [])
 
   return (<>
-    {arrayPlaces.length > 0 ?
+    {arrayPlaces.length > 0 || arrayItineraries.length > 0?
       <UserItinerariesContext.Provider value={[arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries]}>
         <div className="list--main--container">
           <Lists elements={arrayItineraries} title={textContent.titles[0]} path={'/createItinerary'} />

@@ -11,7 +11,7 @@ import ListItems from "../ListItems";
 const textContent = {
   fieldsnames: ["Username", "Zona", "Language", "First Name", "Last Name", "Email", "Rol"],
   title: "User Info",
-  button: "Modify",
+  button: "Change Password",
 };
 export default function Profileinfo() {
   const { user } = useAuth();
@@ -28,7 +28,7 @@ export default function Profileinfo() {
         <ul className="profileinfo--list">
           {valuesdata.map((element, index) => <li key={index}><div className="profileinfo--field">{textContent.fieldsnames[index]}</div><div>{element}</div></li>)}
         </ul>
-        <Button className="profileinfo--submit-button" variant="contained" type="submit">
+        <Button className="profileinfo--submit-button" variant="contained" type="button" onClick={()=>(navigate('/forgottenpassword'))}>
           {textContent.button}
         </Button>
       </div>

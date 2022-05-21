@@ -88,7 +88,7 @@ export default function PlaceForm() {
         path_image: urlS3,
         id_user:user.sub
     },{ headers : {"Authorization" : `${token.jwtToken}`}})  
-    console.log('submit',t);
+    navigate('/profile')
   };
 
   useEffect(() => {
@@ -99,7 +99,6 @@ export default function PlaceForm() {
   }, [file])
 
 
-  console.log('user',user);
   return <><form className="place--form" onSubmit={handleSubmit(onSubmit)}>
     {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found' /> : null}
     <FileCustom

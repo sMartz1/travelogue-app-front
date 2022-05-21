@@ -9,16 +9,8 @@ export const AuthProvider = ({ children }) => {
 
   async function iscurrentSession() {
     try {
-      const currentSession = await Auth.currentSession();
-      console.log('currentSesion',currentSession);
       const userdata = await Auth.currentUserInfo();
-      console.log('currentUserInfo',userdata);
-      const currentAuthenticatedUser = await Auth.currentAuthenticatedUser();
-      console.log('currentAuthenticatedUser',currentAuthenticatedUser);
-      const currentUserInfo = await Auth.currentUserInfo();
-      console.log('currentUserInfo',currentUserInfo);
       setUser(userdata.attributes);
-      console.log(userdata.atributes);
       setLoading(false);
       //checks there's a valid user logged and redirect to landing page in case we logout on this page.
     } catch (error) {
