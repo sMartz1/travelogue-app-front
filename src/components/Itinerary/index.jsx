@@ -36,7 +36,6 @@ export default function Itinerary() {
     let tempArr = [];
     for (const element of data) {
       const dataPlace = await getPlaceById(element.id_place);
-      console.log('aaaaaaa',element)
       const arrNumbers = dataPlace.location.split(",");
       tempArr.push({
         ...dataPlace,

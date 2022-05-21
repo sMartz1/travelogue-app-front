@@ -98,8 +98,7 @@ export default function ItinerariesForm() {
     };
     try {
       const itinerary = await postNewItinerary(dataToSave);
-
-      reset({ itineraryName: "" })
+      reset({ itineraryName: "" , description:""})
       handlePoints(itinerary.id) /* we need itinerary id to save itinerary places */
     }
     catch {
@@ -129,8 +128,8 @@ export default function ItinerariesForm() {
         console.log(err)
       }
     }
-    console.log('antes del segundo reset')
     reset();
+    navigate('/profile')
   }
 
   useEffect(() => {
@@ -151,7 +150,6 @@ export default function ItinerariesForm() {
     handlePlaces()
   }, [])
 
-  console.log(arrayPlaces)
   return (
     <>
       {arrayPlaces.length > 0 ? <form className="itineraries form--main" onSubmit={handleSubmit(onSubmit)}>

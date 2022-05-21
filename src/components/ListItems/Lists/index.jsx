@@ -19,14 +19,13 @@ export default function Lists(elements) {
     type === "Itineraries" ?  navigate(`/itinerary/${id}`) :navigate(`/place/${id}`)
   }
 
-  const modifyItem = (i, isItinerary) => {
-    if (isItinerary) {
+  const modifyItem = (i) => {
+    
         let itineraryToModify = arrayItineraries[i]
         window.localStorage.setItem('places', JSON.stringify(arrayPlaces));
         window.localStorage.setItem('itinerary', JSON.stringify(itineraryToModify));
         navigate(`/modifyItinerary/${itineraryToModify.id}`)
-    }
-
+    
   }
 
 
@@ -51,13 +50,12 @@ export default function Lists(elements) {
   useEffect(() => {
 
   }, [arrayPlaces, arrayItineraries])
-  console.log(arrayPlaces)
-  console.log(arrayItineraries)
+
 
   return (
     <div className="list--container">
       <div className="list--title"><h2>{elements.title}</h2><div className="list--button" onClick={() => navigate(`${elements.path}`)}><AddCircleRounded className="list--icon-add" /></div></div>
-      <section className="profileinfo--list">
+      {elements.elements.length > 0 ? <section className="profileinfo--list">
         {elements.elements.map((element, index) => {
           return (
             <div className="list--row" key={index}>
@@ -67,12 +65,12 @@ export default function Lists(elements) {
                 <p className="list--name" onClick={()=>viewItem(element.id,elements.title)}>{element.name}</p>
               </div>
               <div className="list--buttons">
-                {elements.title === 'Places' ? null : <div className="list--button" onClick={() => modifyItem(index,element.description? false:true)}><SettingsRounded /></div>}
+                {elements.title === 'Places' ? null : <div className="list--button" onClick={() => modifyItem(index)}><SettingsRounded /></div>}
                 <div className="list--button" onClick={() => deleteItem(element.id)}><DeleteRounded /></div>
               </div>
             </div>)
         })}
-      </section>
+      </section> : <h3>{`No ${elements.title} Yet`}</h3>}
     </div>
   );
   
