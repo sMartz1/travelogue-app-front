@@ -43,6 +43,10 @@
     border-radius: 2rem;
     overflow: hidden;
   }
+  .itinerary-start-end {
+    display:flex;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 550px) {
