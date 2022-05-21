@@ -14,18 +14,18 @@ import { UserItinerariesContext } from '../../ListItems';
 export default function Lists(elements) {
   const navigate = useNavigate();
   const [arrayPlaces, setArrayPlaces, arrayItineraries, setArrayItineraries] = useContext(UserItinerariesContext);
-  
+
   const viewItem = (id, type) => {
-    type === "Itineraries" ?  navigate(`/itinerary/${id}`) :navigate(`/place/${id}`)
+    type === "Itineraries" ? navigate(`/itinerary/${id}`) : navigate(`/place/${id}`)
   }
 
   const modifyItem = (i) => {
-    
-        let itineraryToModify = arrayItineraries[i]
-        window.localStorage.setItem('places', JSON.stringify(arrayPlaces));
-        window.localStorage.setItem('itinerary', JSON.stringify(itineraryToModify));
-        navigate(`/modifyItinerary/${itineraryToModify.id}`)
-    
+
+    let itineraryToModify = arrayItineraries[i]
+    window.localStorage.setItem('places', JSON.stringify(arrayPlaces));
+    window.localStorage.setItem('itinerary', JSON.stringify(itineraryToModify));
+    navigate(`/modifyItinerary/${itineraryToModify.id}`)
+
   }
 
 
@@ -59,10 +59,10 @@ export default function Lists(elements) {
         {elements.elements.map((element, index) => {
           return (
             <div className="list--row" key={index}>
-              <img className="list--img-cover" src={element.image_path} />
+              <img className="list--img-cover" src={element.image_path || element[0]?.pathImage} />
               <div className="list--name-container">
 
-                <p className="list--name" onClick={()=>viewItem(element.id,elements.title)}>{element.name}</p>
+                <p className="list--name" onClick={() => viewItem(element.id, elements.title)}>{element.name}</p>
               </div>
               <div className="list--buttons">
                 {elements.title === 'Places' ? null : <div className="list--button" onClick={() => modifyItem(index)}><SettingsRounded /></div>}
@@ -73,5 +73,5 @@ export default function Lists(elements) {
       </section> : <h3>{`No ${elements.title} Yet`}</h3>}
     </div>
   );
-  
+
 }

@@ -49,7 +49,6 @@ export default function PlaceForm() {
   const { user } = useAuth();
   const [file, setFile] = useState(null)
   const [previewImg,setPreviewImg] = useState(null)
-  const [urlS3,setUrlS3] = useState('');
   const navigate = useNavigate();
   const [marker, setMarker] = useState(null)
   
@@ -74,10 +73,9 @@ export default function PlaceForm() {
   }, []);
 
   const onSubmit = async (data_form) => {
-    await
-      uploadFile(file, config)
-        .then(data => setUrlS3(data.location))
-        .catch(err => console.error(err))
+      const fileD = await uploadFile(file, config)
+      const filePath = fileD.location;
+     
       const userdata = await Auth.currentSession()
       const token = userdata.getAccessToken()
     const t = await 
@@ -85,7 +83,7 @@ export default function PlaceForm() {
         name:data_form.name,
         price : data_form.price,
         location : `${marker.geometry.coordinates[0]},${marker.geometry.coordinates[1]}`,
-        path_image: urlS3,
+        path_image:filePath,
         id_user:user.sub
     },{ headers : {"Authorization" : `${token.jwtToken}`}})  
     navigate('/profile')
@@ -97,13 +95,13 @@ export default function PlaceForm() {
       setPreviewImg(img)
     }
   }, [file])
-
-
-  return <><form className="place--form" onSubmit={handleSubmit(onSubmit)}>
-    {previewImg ? <img width={imgSize} height={imgSize} src={previewImg} alt='img not found' /> : null}
+  return <>
+    <form className="place--form" onSubmit={handleSubmit(onSubmit)}>
+    <div className="img-container">{previewImg ? <img src={previewImg} alt='img not found' /> : null}
     <FileCustom
       setFile={setFile}
-    />
+    /></div>
+    
     <TextFieldCustom name="name"
       control={controlPlace}
       label={textContent.placeForm.name}
@@ -119,12 +117,7 @@ export default function PlaceForm() {
     <div className="map-container-create-place">
     <Map setMarker={setMarker}/>
     </div>
-    {/* <TextFieldCustom name="location"
-    control = {controlPlace}
-    label={textContent.placeForm.location}
-    id="place-location"
-    errors={errorsPlace.location}/> */}
-    <Button variant="contained" type="submit">
+    <Button variant="contained" type="submit" className="list--buttons">
       {textContent.placeForm.buttonPlace}
     </Button>
   </form>

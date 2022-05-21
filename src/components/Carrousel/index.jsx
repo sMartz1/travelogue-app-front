@@ -6,10 +6,12 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/scss/scrollbar';
 import 'swiper/scss/grid';
+import { Link } from "react-router-dom";
 
 export function Carrousel(props) {
     /* const itineraries = props.itineraries */
 
+    const photoRoutes = 'https://umaipur.uprrp.edu/wp-content/uploads/2019/11/GTD-Hoja-Ruta-Post-Foto-modificada-850x516.jpg'
     const objects = props.objects
 
 
@@ -43,7 +45,13 @@ export function Carrousel(props) {
             }}
             modules={[Pagination]}
         >
-            {objects.map((e, i) => <SwiperSlide className="swiper-slider" key={i}><div className="carrousel--frame-image"><img className="carrousel--img-slider" src={e.image_path} alt='event' /><div className="carrousel--container-text"><h3 className="carrousel--name-item">{e.name}</h3></div></div></SwiperSlide>)}
+            {objects.map((e, i) => <SwiperSlide className="swiper-slider" key={i}><div className="carrousel--frame-image">
+                <img className="carrousel--img-slider" src={props.type === 'itinerary' ? photoRoutes : e.image_path} alt='event' />
+                <div className="carrousel--container-text">
+                    <Link to={props.type === 'itinerary' ? '/itinerary/' + e.id : '/place/' + e.id} className="carrousel--name-item">{e.name}</Link>
+                </div>
+            </div>
+            </SwiperSlide>)}
         </Swiper></>
 
 }

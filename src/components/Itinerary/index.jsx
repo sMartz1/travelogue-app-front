@@ -28,6 +28,7 @@ export default function Itinerary() {
   };
   const getDataItinerary = async () => {
     const data = await getItineraryById(id);
+    console.log({ data })
     setItineratyData(data);
   };
   const getDataItineraryPlace = async () => {
@@ -56,13 +57,18 @@ export default function Itinerary() {
     setActiveStep(i);
     clickPlace.current(i);
   };
-
+  console.log(itineratyData)
   if (!isLoading)
     return (
       <div className="itinerary-container">
         <div className="itinerary-header">{itineratyData.name}</div>
         <div className="itinerary-description">{itineratyData.description}</div>
         <div className="itinerary-map">
+          <div className="itinerary-start-end">
+            <span>{`Start: ${itineratyData.start_location}`}</span>
+            <span>{`End: ${itineratyData.end_location}`}</span>            
+          </div>
+
           <div className="itinerary-place-list">
             <Stepper activeStep={activeStep} orientation="vertical">
               {places.map((step, i) => (

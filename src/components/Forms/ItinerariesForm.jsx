@@ -17,6 +17,7 @@ import {
 import { Auth } from 'aws-amplify';
 
 const textContent = {
+  noPlaces:"You need places to create an itinerary",
   registerForm: {
     itineraryName: "Nombre de itinerario",
     description:"Descripción",
@@ -53,6 +54,7 @@ const schema = yup.object().shape({
     .default(0)
     .notRequired()
 });
+const defaultPrice = 0;
 
 export default function ItinerariesForm() {
 
@@ -223,6 +225,9 @@ export default function ItinerariesForm() {
         <TextFieldCustom
           name="price"
           control={controlRegister}
+          defaultValue={defaultPrice}
+          adornment={'$'}
+          position={'start'}
           label={textContent.registerForm.price}
           id="price-register-form"
           errors={errorsRegister.price}
@@ -230,7 +235,7 @@ export default function ItinerariesForm() {
         <Button variant="contained" type="submit" onClick={() => console.log('click')} >
           {textContent.registerForm.buttonCreate}
         </Button>
-      </form> : <h1>Charging...</h1>}
+      </form> : <h3 className="no-places">{textContent.noPlaces}</h3>}
     </>
   );
 }

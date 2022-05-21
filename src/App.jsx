@@ -25,7 +25,6 @@ function App() {
 
 
   const {user,loading} = useAuth();
-  console.log('user',user);
   if(!loading){return (<>
     
       <main className="main-container">
