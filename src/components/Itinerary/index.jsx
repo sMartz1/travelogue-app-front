@@ -28,6 +28,7 @@ export default function Itinerary() {
   };
   const getDataItinerary = async () => {
     const data = await getItineraryById(id);
+    console.log({ data })
     setItineratyData(data);
   };
   const getDataItineraryPlace = async () => {
@@ -36,7 +37,7 @@ export default function Itinerary() {
     let tempArr = [];
     for (const element of data) {
       const dataPlace = await getPlaceById(element.id_place);
-      console.log('aaaaaaa',element)
+      console.log('aaaaaaa', element)
       const arrNumbers = dataPlace.location.split(",");
       tempArr.push({
         ...dataPlace,

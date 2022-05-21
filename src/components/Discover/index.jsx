@@ -21,10 +21,10 @@ const Discover = () => {
     return (
         <section className="discover--main">
             <div className="discover--slot">
-                <Carrousel objects={places} />
+                <Carrousel objects={places} type="place" />
             </div>
             <div className="discover--slot">
-                <Carrousel objects={itineraries} />
+                <Carrousel objects={itineraries} type="itinerary" />
             </div>
         </section>
     )
