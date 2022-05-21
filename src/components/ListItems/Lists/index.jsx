@@ -59,7 +59,7 @@ export default function Lists(elements) {
         {elements.elements.map((element, index) => {
           return (
             <div className="list--row" key={index}>
-              <img className="list--img-cover" src={element.image_path} />
+              <img className="list--img-cover" src={element.image_path || element[0]?.pathImage} />
               <div className="list--name-container">
 
                 <p className="list--name" onClick={()=>viewItem(element.id,elements.title)}>{element.name}</p>

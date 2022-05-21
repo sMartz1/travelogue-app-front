@@ -16,11 +16,11 @@ export default function PlaceView(){
     useEffect(()=> {
         getPlace()
     },[])
-
+    console.log('place',place);
     return <div className="place--container">
         {place ? 
             <>
-                <img className="place--image" src={place.image_path} width='70px' height='70px' alt={place.name}/>
+                <img className="place--image" src={place[0].pathImage} width='70px' height='70px' alt={place.name}/>
                 <h1>{place.name}</h1>
                 <h2>{place.location}</h2>
                 <p>{place.price}</p> 
