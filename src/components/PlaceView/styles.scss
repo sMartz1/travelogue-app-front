@@ -10,3 +10,13 @@
     gap: 20px;
     padding: 30px;
 }
+.place-map-container{
+height: 400px;
+width: 400px;
+border-radius: 2rem;
+overflow: hidden;  
+}
+.place-header{
+    display: flex;
+    flex-direction: row;
+}

@@ -38,32 +38,46 @@ export default function Map({
       changePlace.current = moveMap;
     }
 
-    if (features?.length > 0) {
-      const bounds = [];
-      let indexMarker = 1;
-      features.forEach((feature) => {
-        // Create a React ref
-        const ref = React.createRef();
-        // Create a new DOM node and save it to the React ref
-        ref.current = document.createElement("div");
-        const root = createRoot(ref.current);
-        root.render(<Marker onClick={markerClicked}>{indexMarker}</Marker>);
-        indexMarker++;
+    if (features?.length > 1) {
+        const bounds = [];
+        let indexMarker = 1;
+        features.forEach((feature) => {
+          // Create a React ref
+          const ref = React.createRef();
+          // Create a new DOM node and save it to the React ref
+          ref.current = document.createElement("div");
+          const root = createRoot(ref.current);
+          root.render(<Marker onClick={markerClicked}>{indexMarker}</Marker>);
+          indexMarker++;
 
-        // Create a Mapbox Marker at our new DOM node
-        new mapboxgl.Marker(ref.current)
-          .setLngLat(feature.coordinates)
-          .addTo(map.current);
+          // Create a Mapbox Marker at our new DOM node
+          new mapboxgl.Marker(ref.current)
+            .setLngLat(feature.coordinates)
+            .addTo(map.current);
 
-        bounds.push(feature.coordinates);
-      });
+          bounds.push(feature.coordinates);
+        });
 
-      var boundsF = bounds.reduce(function (boundsIn, coord) {
-        return boundsIn.extend(coord);
-      }, new mapboxgl.LngLatBounds(bounds[0], bounds[0]));
-      map.current.fitBounds(boundsF, {
-        padding: 20,
-      });
+        var boundsF = bounds.reduce(function (boundsIn, coord) {
+          return boundsIn.extend(coord);
+        }, new mapboxgl.LngLatBounds(bounds[0], bounds[0]));
+        map.current.fitBounds(boundsF, {
+          padding: 20,
+        });
+      
+      } else if(features?.length === 1) {
+      
+      const ref = React.createRef();
+      // Create a new DOM node and save it to the React ref
+      ref.current = document.createElement("div");
+      const root = createRoot(ref.current);
+      root.render(<Marker onClick={markerClicked}></Marker>);
+      new mapboxgl.Marker(ref.current)
+            .setLngLat(features[0].coordinates)
+            .addTo(map.current);
+      map.current.flyTo({ center: [features[0].coordinates[0], features[0].coordinates[1]],
+          zoom: 15,
+      })
     }
   });
   //Update state
