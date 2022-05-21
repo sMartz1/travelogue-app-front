@@ -132,7 +132,7 @@ export default function ModifyItinerary() {
         }
       }
       reset();
-      navigate('/lists')
+      navigate('/profile')
   }
 
   useEffect(() => {
